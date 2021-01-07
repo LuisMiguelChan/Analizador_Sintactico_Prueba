@@ -9,7 +9,7 @@ resultado_gramatica = []
 precedence = (
     ('right', 'SI', 'SINO',),
     ('right', 'STRING'),
-    ('right', 'PARENT'),
+    ('left', 'PARENT'),
     ('right', 'COMMA'),
     ('left', 'SUMA', 'RESTA'),
     ('left', 'MULT', 'DIV'),
@@ -18,6 +18,8 @@ precedence = (
     ('right', 'EQUALS'),
     ('right', 'COMILLA'),
     ('right', 'VARIABLE'),
+    ('right', 'PRINT'),
+    ('right', 'PUTS'),
 )
 nombres = {}
 
@@ -84,7 +86,8 @@ def p_expresion_logicas(t):
                 |   expresion MAYORIGUAL expresion 
                 |   expresion IGUAL expresion 
                 |   expresion DISTINTO expresion
-                |   expresion COMILLA expresion
+                |   expresion PARENT expresion
+                |   expresion STRING expresion
     '''
     if t[2] == "<":
         t[0] = t[1] < t[3]
@@ -103,8 +106,16 @@ def p_expresion_numero(t):
     'expresion : ENTERO'
     t[0] = t[1]
 
-def p_expresion_parent(t):
-    'expresion : PARENT'
+def p_expresion_print(t):
+    'expresion : PRINT'
+    t[0] = t[1]
+
+def p_expresion_puts(t):
+    'expresion : PUTS'
+    t[0] = t[1]
+
+def p_comilla(t):
+    'expresion : COMILLA'
     t[0] = t[1]
 
 def p_expresion_decimal(t):
@@ -117,10 +128,6 @@ def p_expresion_variable(t):
 
 def p_expresion_end(t):
     'expresion : END'
-    t[0] = t[1]
-
-def p_expresion_string(t):
-    'expresion : STRING'
     t[0] = t[1]
 
 def p_error(t):

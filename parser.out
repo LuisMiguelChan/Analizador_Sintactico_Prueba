@@ -35,28 +35,30 @@ Rule 16    expresion -> expresion MENORIGUAL expresion
 Rule 17    expresion -> expresion MAYORIGUAL expresion
 Rule 18    expresion -> expresion IGUAL expresion
 Rule 19    expresion -> expresion DISTINTO expresion
-Rule 20    expresion -> expresion COMILLA expresion
-Rule 21    expresion -> ENTERO
-Rule 22    expresion -> PARENT
-Rule 23    expresion -> DECIMAL
-Rule 24    expresion -> VARIABLE
-Rule 25    expresion -> END
-Rule 26    expresion -> STRING
+Rule 20    expresion -> expresion PARENT expresion
+Rule 21    expresion -> expresion STRING expresion
+Rule 22    expresion -> ENTERO
+Rule 23    expresion -> PRINT
+Rule 24    expresion -> PUTS
+Rule 25    expresion -> COMILLA
+Rule 26    expresion -> DECIMAL
+Rule 27    expresion -> VARIABLE
+Rule 28    expresion -> END
 
 Terminals, with rules where they appear
 
 AND                  : 
 COMA                 : 
 COMENTARIO           : 
-COMILLA              : 20
+COMILLA              : 25
 COMMA                : 4
 CORDER               : 13
 CORIZQ               : 13
-DECIMAL              : 23
+DECIMAL              : 26
 DISTINTO             : 19
 DIV                  : 9
-END                  : 25
-ENTERO               : 21
+END                  : 28
+ENTERO               : 22
 ENTRE                : 
 EQUALS               : 2
 IGUAL                : 18
@@ -73,21 +75,23 @@ MULT                 : 8
 NOT                  : 
 OR                   : 
 PARA                 : 
-PARENT               : 22
+PARENT               : 20
 PLUSPLUS             : 
 POTENCIA             : 10
+PRINT                : 23
+PUTS                 : 24
 RESTA                : 7
 SI                   : 1
 SINO                 : 3
-STRING               : 26
+STRING               : 21
 SUMA                 : 6
-VARIABLE             : 24
+VARIABLE             : 27
 error                : 
 
 Nonterminals, with rules where they appear
 
 declaracion          : 0
-expresion            : 5 6 6 7 7 8 8 9 9 10 10 11 11 12 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20
+expresion            : 5 6 6 7 7 8 8 9 9 10 10 11 11 12 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21
 
 Parsing method: LALR
 
@@ -113,13 +117,15 @@ state 0
     (17) expresion -> . expresion MAYORIGUAL expresion
     (18) expresion -> . expresion IGUAL expresion
     (19) expresion -> . expresion DISTINTO expresion
-    (20) expresion -> . expresion COMILLA expresion
-    (21) expresion -> . ENTERO
-    (22) expresion -> . PARENT
-    (23) expresion -> . DECIMAL
-    (24) expresion -> . VARIABLE
-    (25) expresion -> . END
-    (26) expresion -> . STRING
+    (20) expresion -> . expresion PARENT expresion
+    (21) expresion -> . expresion STRING expresion
+    (22) expresion -> . ENTERO
+    (23) expresion -> . PRINT
+    (24) expresion -> . PUTS
+    (25) expresion -> . COMILLA
+    (26) expresion -> . DECIMAL
+    (27) expresion -> . VARIABLE
+    (28) expresion -> . END
 
     SI              shift and go to state 2
     EQUALS          shift and go to state 3
@@ -128,11 +134,12 @@ state 0
     LLAIZQ          shift and go to state 7
     CORIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
-    PARENT          shift and go to state 10
-    DECIMAL         shift and go to state 11
-    VARIABLE        shift and go to state 12
-    END             shift and go to state 13
-    STRING          shift and go to state 14
+    PRINT           shift and go to state 10
+    PUTS            shift and go to state 11
+    COMILLA         shift and go to state 12
+    DECIMAL         shift and go to state 13
+    VARIABLE        shift and go to state 14
+    END             shift and go to state 15
 
     declaracion                    shift and go to state 1
     expresion                      shift and go to state 5
@@ -179,22 +186,24 @@ state 5
     (17) expresion -> expresion . MAYORIGUAL expresion
     (18) expresion -> expresion . IGUAL expresion
     (19) expresion -> expresion . DISTINTO expresion
-    (20) expresion -> expresion . COMILLA expresion
+    (20) expresion -> expresion . PARENT expresion
+    (21) expresion -> expresion . STRING expresion
 
     $end            reduce using rule 5 (declaracion -> expresion .)
-    SUMA            shift and go to state 15
-    RESTA           shift and go to state 16
-    MULT            shift and go to state 17
-    DIV             shift and go to state 18
-    POTENCIA        shift and go to state 19
-    MODULO          shift and go to state 20
-    MENORQUE        shift and go to state 21
-    MAYORQUE        shift and go to state 22
-    MENORIGUAL      shift and go to state 23
-    MAYORIGUAL      shift and go to state 24
-    IGUAL           shift and go to state 25
-    DISTINTO        shift and go to state 26
-    COMILLA         shift and go to state 27
+    SUMA            shift and go to state 16
+    RESTA           shift and go to state 17
+    MULT            shift and go to state 18
+    DIV             shift and go to state 19
+    POTENCIA        shift and go to state 20
+    MODULO          shift and go to state 21
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 24
+    MAYORIGUAL      shift and go to state 25
+    IGUAL           shift and go to state 26
+    DISTINTO        shift and go to state 27
+    PARENT          shift and go to state 28
+    STRING          shift and go to state 29
 
 
 state 6
@@ -213,7 +222,8 @@ state 6
     MAYORIGUAL      reduce using rule 4 (expresion -> COMMA .)
     IGUAL           reduce using rule 4 (expresion -> COMMA .)
     DISTINTO        reduce using rule 4 (expresion -> COMMA .)
-    COMILLA         reduce using rule 4 (expresion -> COMMA .)
+    PARENT          reduce using rule 4 (expresion -> COMMA .)
+    STRING          reduce using rule 4 (expresion -> COMMA .)
     $end            reduce using rule 4 (expresion -> COMMA .)
     LLADER          reduce using rule 4 (expresion -> COMMA .)
     CORDER          reduce using rule 4 (expresion -> COMMA .)
@@ -237,25 +247,28 @@ state 7
     (17) expresion -> . expresion MAYORIGUAL expresion
     (18) expresion -> . expresion IGUAL expresion
     (19) expresion -> . expresion DISTINTO expresion
-    (20) expresion -> . expresion COMILLA expresion
-    (21) expresion -> . ENTERO
-    (22) expresion -> . PARENT
-    (23) expresion -> . DECIMAL
-    (24) expresion -> . VARIABLE
-    (25) expresion -> . END
-    (26) expresion -> . STRING
+    (20) expresion -> . expresion PARENT expresion
+    (21) expresion -> . expresion STRING expresion
+    (22) expresion -> . ENTERO
+    (23) expresion -> . PRINT
+    (24) expresion -> . PUTS
+    (25) expresion -> . COMILLA
+    (26) expresion -> . DECIMAL
+    (27) expresion -> . VARIABLE
+    (28) expresion -> . END
 
     COMMA           shift and go to state 6
     LLAIZQ          shift and go to state 7
     CORIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
-    PARENT          shift and go to state 10
-    DECIMAL         shift and go to state 11
-    VARIABLE        shift and go to state 12
-    END             shift and go to state 13
-    STRING          shift and go to state 14
+    PRINT           shift and go to state 10
+    PUTS            shift and go to state 11
+    COMILLA         shift and go to state 12
+    DECIMAL         shift and go to state 13
+    VARIABLE        shift and go to state 14
+    END             shift and go to state 15
 
-    expresion                      shift and go to state 28
+    expresion                      shift and go to state 30
 
 state 8
 
@@ -275,159 +288,191 @@ state 8
     (17) expresion -> . expresion MAYORIGUAL expresion
     (18) expresion -> . expresion IGUAL expresion
     (19) expresion -> . expresion DISTINTO expresion
-    (20) expresion -> . expresion COMILLA expresion
-    (21) expresion -> . ENTERO
-    (22) expresion -> . PARENT
-    (23) expresion -> . DECIMAL
-    (24) expresion -> . VARIABLE
-    (25) expresion -> . END
-    (26) expresion -> . STRING
+    (20) expresion -> . expresion PARENT expresion
+    (21) expresion -> . expresion STRING expresion
+    (22) expresion -> . ENTERO
+    (23) expresion -> . PRINT
+    (24) expresion -> . PUTS
+    (25) expresion -> . COMILLA
+    (26) expresion -> . DECIMAL
+    (27) expresion -> . VARIABLE
+    (28) expresion -> . END
 
     COMMA           shift and go to state 6
     LLAIZQ          shift and go to state 7
     CORIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
-    PARENT          shift and go to state 10
-    DECIMAL         shift and go to state 11
-    VARIABLE        shift and go to state 12
-    END             shift and go to state 13
-    STRING          shift and go to state 14
+    PRINT           shift and go to state 10
+    PUTS            shift and go to state 11
+    COMILLA         shift and go to state 12
+    DECIMAL         shift and go to state 13
+    VARIABLE        shift and go to state 14
+    END             shift and go to state 15
 
-    expresion                      shift and go to state 29
+    expresion                      shift and go to state 31
 
 state 9
 
-    (21) expresion -> ENTERO .
+    (22) expresion -> ENTERO .
 
-    SUMA            reduce using rule 21 (expresion -> ENTERO .)
-    RESTA           reduce using rule 21 (expresion -> ENTERO .)
-    MULT            reduce using rule 21 (expresion -> ENTERO .)
-    DIV             reduce using rule 21 (expresion -> ENTERO .)
-    POTENCIA        reduce using rule 21 (expresion -> ENTERO .)
-    MODULO          reduce using rule 21 (expresion -> ENTERO .)
-    MENORQUE        reduce using rule 21 (expresion -> ENTERO .)
-    MAYORQUE        reduce using rule 21 (expresion -> ENTERO .)
-    MENORIGUAL      reduce using rule 21 (expresion -> ENTERO .)
-    MAYORIGUAL      reduce using rule 21 (expresion -> ENTERO .)
-    IGUAL           reduce using rule 21 (expresion -> ENTERO .)
-    DISTINTO        reduce using rule 21 (expresion -> ENTERO .)
-    COMILLA         reduce using rule 21 (expresion -> ENTERO .)
-    $end            reduce using rule 21 (expresion -> ENTERO .)
-    LLADER          reduce using rule 21 (expresion -> ENTERO .)
-    CORDER          reduce using rule 21 (expresion -> ENTERO .)
+    SUMA            reduce using rule 22 (expresion -> ENTERO .)
+    RESTA           reduce using rule 22 (expresion -> ENTERO .)
+    MULT            reduce using rule 22 (expresion -> ENTERO .)
+    DIV             reduce using rule 22 (expresion -> ENTERO .)
+    POTENCIA        reduce using rule 22 (expresion -> ENTERO .)
+    MODULO          reduce using rule 22 (expresion -> ENTERO .)
+    MENORQUE        reduce using rule 22 (expresion -> ENTERO .)
+    MAYORQUE        reduce using rule 22 (expresion -> ENTERO .)
+    MENORIGUAL      reduce using rule 22 (expresion -> ENTERO .)
+    MAYORIGUAL      reduce using rule 22 (expresion -> ENTERO .)
+    IGUAL           reduce using rule 22 (expresion -> ENTERO .)
+    DISTINTO        reduce using rule 22 (expresion -> ENTERO .)
+    PARENT          reduce using rule 22 (expresion -> ENTERO .)
+    STRING          reduce using rule 22 (expresion -> ENTERO .)
+    $end            reduce using rule 22 (expresion -> ENTERO .)
+    LLADER          reduce using rule 22 (expresion -> ENTERO .)
+    CORDER          reduce using rule 22 (expresion -> ENTERO .)
 
 
 state 10
 
-    (22) expresion -> PARENT .
+    (23) expresion -> PRINT .
 
-    SUMA            reduce using rule 22 (expresion -> PARENT .)
-    RESTA           reduce using rule 22 (expresion -> PARENT .)
-    MULT            reduce using rule 22 (expresion -> PARENT .)
-    DIV             reduce using rule 22 (expresion -> PARENT .)
-    POTENCIA        reduce using rule 22 (expresion -> PARENT .)
-    MODULO          reduce using rule 22 (expresion -> PARENT .)
-    MENORQUE        reduce using rule 22 (expresion -> PARENT .)
-    MAYORQUE        reduce using rule 22 (expresion -> PARENT .)
-    MENORIGUAL      reduce using rule 22 (expresion -> PARENT .)
-    MAYORIGUAL      reduce using rule 22 (expresion -> PARENT .)
-    IGUAL           reduce using rule 22 (expresion -> PARENT .)
-    DISTINTO        reduce using rule 22 (expresion -> PARENT .)
-    COMILLA         reduce using rule 22 (expresion -> PARENT .)
-    $end            reduce using rule 22 (expresion -> PARENT .)
-    LLADER          reduce using rule 22 (expresion -> PARENT .)
-    CORDER          reduce using rule 22 (expresion -> PARENT .)
+    SUMA            reduce using rule 23 (expresion -> PRINT .)
+    RESTA           reduce using rule 23 (expresion -> PRINT .)
+    MULT            reduce using rule 23 (expresion -> PRINT .)
+    DIV             reduce using rule 23 (expresion -> PRINT .)
+    POTENCIA        reduce using rule 23 (expresion -> PRINT .)
+    MODULO          reduce using rule 23 (expresion -> PRINT .)
+    MENORQUE        reduce using rule 23 (expresion -> PRINT .)
+    MAYORQUE        reduce using rule 23 (expresion -> PRINT .)
+    MENORIGUAL      reduce using rule 23 (expresion -> PRINT .)
+    MAYORIGUAL      reduce using rule 23 (expresion -> PRINT .)
+    IGUAL           reduce using rule 23 (expresion -> PRINT .)
+    DISTINTO        reduce using rule 23 (expresion -> PRINT .)
+    PARENT          reduce using rule 23 (expresion -> PRINT .)
+    STRING          reduce using rule 23 (expresion -> PRINT .)
+    $end            reduce using rule 23 (expresion -> PRINT .)
+    LLADER          reduce using rule 23 (expresion -> PRINT .)
+    CORDER          reduce using rule 23 (expresion -> PRINT .)
 
 
 state 11
 
-    (23) expresion -> DECIMAL .
+    (24) expresion -> PUTS .
 
-    SUMA            reduce using rule 23 (expresion -> DECIMAL .)
-    RESTA           reduce using rule 23 (expresion -> DECIMAL .)
-    MULT            reduce using rule 23 (expresion -> DECIMAL .)
-    DIV             reduce using rule 23 (expresion -> DECIMAL .)
-    POTENCIA        reduce using rule 23 (expresion -> DECIMAL .)
-    MODULO          reduce using rule 23 (expresion -> DECIMAL .)
-    MENORQUE        reduce using rule 23 (expresion -> DECIMAL .)
-    MAYORQUE        reduce using rule 23 (expresion -> DECIMAL .)
-    MENORIGUAL      reduce using rule 23 (expresion -> DECIMAL .)
-    MAYORIGUAL      reduce using rule 23 (expresion -> DECIMAL .)
-    IGUAL           reduce using rule 23 (expresion -> DECIMAL .)
-    DISTINTO        reduce using rule 23 (expresion -> DECIMAL .)
-    COMILLA         reduce using rule 23 (expresion -> DECIMAL .)
-    $end            reduce using rule 23 (expresion -> DECIMAL .)
-    LLADER          reduce using rule 23 (expresion -> DECIMAL .)
-    CORDER          reduce using rule 23 (expresion -> DECIMAL .)
+    SUMA            reduce using rule 24 (expresion -> PUTS .)
+    RESTA           reduce using rule 24 (expresion -> PUTS .)
+    MULT            reduce using rule 24 (expresion -> PUTS .)
+    DIV             reduce using rule 24 (expresion -> PUTS .)
+    POTENCIA        reduce using rule 24 (expresion -> PUTS .)
+    MODULO          reduce using rule 24 (expresion -> PUTS .)
+    MENORQUE        reduce using rule 24 (expresion -> PUTS .)
+    MAYORQUE        reduce using rule 24 (expresion -> PUTS .)
+    MENORIGUAL      reduce using rule 24 (expresion -> PUTS .)
+    MAYORIGUAL      reduce using rule 24 (expresion -> PUTS .)
+    IGUAL           reduce using rule 24 (expresion -> PUTS .)
+    DISTINTO        reduce using rule 24 (expresion -> PUTS .)
+    PARENT          reduce using rule 24 (expresion -> PUTS .)
+    STRING          reduce using rule 24 (expresion -> PUTS .)
+    $end            reduce using rule 24 (expresion -> PUTS .)
+    LLADER          reduce using rule 24 (expresion -> PUTS .)
+    CORDER          reduce using rule 24 (expresion -> PUTS .)
 
 
 state 12
 
-    (24) expresion -> VARIABLE .
+    (25) expresion -> COMILLA .
 
-    SUMA            reduce using rule 24 (expresion -> VARIABLE .)
-    RESTA           reduce using rule 24 (expresion -> VARIABLE .)
-    MULT            reduce using rule 24 (expresion -> VARIABLE .)
-    DIV             reduce using rule 24 (expresion -> VARIABLE .)
-    POTENCIA        reduce using rule 24 (expresion -> VARIABLE .)
-    MODULO          reduce using rule 24 (expresion -> VARIABLE .)
-    MENORQUE        reduce using rule 24 (expresion -> VARIABLE .)
-    MAYORQUE        reduce using rule 24 (expresion -> VARIABLE .)
-    MENORIGUAL      reduce using rule 24 (expresion -> VARIABLE .)
-    MAYORIGUAL      reduce using rule 24 (expresion -> VARIABLE .)
-    IGUAL           reduce using rule 24 (expresion -> VARIABLE .)
-    DISTINTO        reduce using rule 24 (expresion -> VARIABLE .)
-    COMILLA         reduce using rule 24 (expresion -> VARIABLE .)
-    $end            reduce using rule 24 (expresion -> VARIABLE .)
-    LLADER          reduce using rule 24 (expresion -> VARIABLE .)
-    CORDER          reduce using rule 24 (expresion -> VARIABLE .)
+    SUMA            reduce using rule 25 (expresion -> COMILLA .)
+    RESTA           reduce using rule 25 (expresion -> COMILLA .)
+    MULT            reduce using rule 25 (expresion -> COMILLA .)
+    DIV             reduce using rule 25 (expresion -> COMILLA .)
+    POTENCIA        reduce using rule 25 (expresion -> COMILLA .)
+    MODULO          reduce using rule 25 (expresion -> COMILLA .)
+    MENORQUE        reduce using rule 25 (expresion -> COMILLA .)
+    MAYORQUE        reduce using rule 25 (expresion -> COMILLA .)
+    MENORIGUAL      reduce using rule 25 (expresion -> COMILLA .)
+    MAYORIGUAL      reduce using rule 25 (expresion -> COMILLA .)
+    IGUAL           reduce using rule 25 (expresion -> COMILLA .)
+    DISTINTO        reduce using rule 25 (expresion -> COMILLA .)
+    PARENT          reduce using rule 25 (expresion -> COMILLA .)
+    STRING          reduce using rule 25 (expresion -> COMILLA .)
+    $end            reduce using rule 25 (expresion -> COMILLA .)
+    LLADER          reduce using rule 25 (expresion -> COMILLA .)
+    CORDER          reduce using rule 25 (expresion -> COMILLA .)
 
 
 state 13
 
-    (25) expresion -> END .
+    (26) expresion -> DECIMAL .
 
-    SUMA            reduce using rule 25 (expresion -> END .)
-    RESTA           reduce using rule 25 (expresion -> END .)
-    MULT            reduce using rule 25 (expresion -> END .)
-    DIV             reduce using rule 25 (expresion -> END .)
-    POTENCIA        reduce using rule 25 (expresion -> END .)
-    MODULO          reduce using rule 25 (expresion -> END .)
-    MENORQUE        reduce using rule 25 (expresion -> END .)
-    MAYORQUE        reduce using rule 25 (expresion -> END .)
-    MENORIGUAL      reduce using rule 25 (expresion -> END .)
-    MAYORIGUAL      reduce using rule 25 (expresion -> END .)
-    IGUAL           reduce using rule 25 (expresion -> END .)
-    DISTINTO        reduce using rule 25 (expresion -> END .)
-    COMILLA         reduce using rule 25 (expresion -> END .)
-    $end            reduce using rule 25 (expresion -> END .)
-    LLADER          reduce using rule 25 (expresion -> END .)
-    CORDER          reduce using rule 25 (expresion -> END .)
+    SUMA            reduce using rule 26 (expresion -> DECIMAL .)
+    RESTA           reduce using rule 26 (expresion -> DECIMAL .)
+    MULT            reduce using rule 26 (expresion -> DECIMAL .)
+    DIV             reduce using rule 26 (expresion -> DECIMAL .)
+    POTENCIA        reduce using rule 26 (expresion -> DECIMAL .)
+    MODULO          reduce using rule 26 (expresion -> DECIMAL .)
+    MENORQUE        reduce using rule 26 (expresion -> DECIMAL .)
+    MAYORQUE        reduce using rule 26 (expresion -> DECIMAL .)
+    MENORIGUAL      reduce using rule 26 (expresion -> DECIMAL .)
+    MAYORIGUAL      reduce using rule 26 (expresion -> DECIMAL .)
+    IGUAL           reduce using rule 26 (expresion -> DECIMAL .)
+    DISTINTO        reduce using rule 26 (expresion -> DECIMAL .)
+    PARENT          reduce using rule 26 (expresion -> DECIMAL .)
+    STRING          reduce using rule 26 (expresion -> DECIMAL .)
+    $end            reduce using rule 26 (expresion -> DECIMAL .)
+    LLADER          reduce using rule 26 (expresion -> DECIMAL .)
+    CORDER          reduce using rule 26 (expresion -> DECIMAL .)
 
 
 state 14
 
-    (26) expresion -> STRING .
+    (27) expresion -> VARIABLE .
 
-    SUMA            reduce using rule 26 (expresion -> STRING .)
-    RESTA           reduce using rule 26 (expresion -> STRING .)
-    MULT            reduce using rule 26 (expresion -> STRING .)
-    DIV             reduce using rule 26 (expresion -> STRING .)
-    POTENCIA        reduce using rule 26 (expresion -> STRING .)
-    MODULO          reduce using rule 26 (expresion -> STRING .)
-    MENORQUE        reduce using rule 26 (expresion -> STRING .)
-    MAYORQUE        reduce using rule 26 (expresion -> STRING .)
-    MENORIGUAL      reduce using rule 26 (expresion -> STRING .)
-    MAYORIGUAL      reduce using rule 26 (expresion -> STRING .)
-    IGUAL           reduce using rule 26 (expresion -> STRING .)
-    DISTINTO        reduce using rule 26 (expresion -> STRING .)
-    COMILLA         reduce using rule 26 (expresion -> STRING .)
-    $end            reduce using rule 26 (expresion -> STRING .)
-    LLADER          reduce using rule 26 (expresion -> STRING .)
-    CORDER          reduce using rule 26 (expresion -> STRING .)
+    SUMA            reduce using rule 27 (expresion -> VARIABLE .)
+    RESTA           reduce using rule 27 (expresion -> VARIABLE .)
+    MULT            reduce using rule 27 (expresion -> VARIABLE .)
+    DIV             reduce using rule 27 (expresion -> VARIABLE .)
+    POTENCIA        reduce using rule 27 (expresion -> VARIABLE .)
+    MODULO          reduce using rule 27 (expresion -> VARIABLE .)
+    MENORQUE        reduce using rule 27 (expresion -> VARIABLE .)
+    MAYORQUE        reduce using rule 27 (expresion -> VARIABLE .)
+    MENORIGUAL      reduce using rule 27 (expresion -> VARIABLE .)
+    MAYORIGUAL      reduce using rule 27 (expresion -> VARIABLE .)
+    IGUAL           reduce using rule 27 (expresion -> VARIABLE .)
+    DISTINTO        reduce using rule 27 (expresion -> VARIABLE .)
+    PARENT          reduce using rule 27 (expresion -> VARIABLE .)
+    STRING          reduce using rule 27 (expresion -> VARIABLE .)
+    $end            reduce using rule 27 (expresion -> VARIABLE .)
+    LLADER          reduce using rule 27 (expresion -> VARIABLE .)
+    CORDER          reduce using rule 27 (expresion -> VARIABLE .)
 
 
 state 15
+
+    (28) expresion -> END .
+
+    SUMA            reduce using rule 28 (expresion -> END .)
+    RESTA           reduce using rule 28 (expresion -> END .)
+    MULT            reduce using rule 28 (expresion -> END .)
+    DIV             reduce using rule 28 (expresion -> END .)
+    POTENCIA        reduce using rule 28 (expresion -> END .)
+    MODULO          reduce using rule 28 (expresion -> END .)
+    MENORQUE        reduce using rule 28 (expresion -> END .)
+    MAYORQUE        reduce using rule 28 (expresion -> END .)
+    MENORIGUAL      reduce using rule 28 (expresion -> END .)
+    MAYORIGUAL      reduce using rule 28 (expresion -> END .)
+    IGUAL           reduce using rule 28 (expresion -> END .)
+    DISTINTO        reduce using rule 28 (expresion -> END .)
+    PARENT          reduce using rule 28 (expresion -> END .)
+    STRING          reduce using rule 28 (expresion -> END .)
+    $end            reduce using rule 28 (expresion -> END .)
+    LLADER          reduce using rule 28 (expresion -> END .)
+    CORDER          reduce using rule 28 (expresion -> END .)
+
+
+state 16
 
     (6) expresion -> expresion SUMA . expresion
     (4) expresion -> . COMMA
@@ -445,27 +490,30 @@ state 15
     (17) expresion -> . expresion MAYORIGUAL expresion
     (18) expresion -> . expresion IGUAL expresion
     (19) expresion -> . expresion DISTINTO expresion
-    (20) expresion -> . expresion COMILLA expresion
-    (21) expresion -> . ENTERO
-    (22) expresion -> . PARENT
-    (23) expresion -> . DECIMAL
-    (24) expresion -> . VARIABLE
-    (25) expresion -> . END
-    (26) expresion -> . STRING
+    (20) expresion -> . expresion PARENT expresion
+    (21) expresion -> . expresion STRING expresion
+    (22) expresion -> . ENTERO
+    (23) expresion -> . PRINT
+    (24) expresion -> . PUTS
+    (25) expresion -> . COMILLA
+    (26) expresion -> . DECIMAL
+    (27) expresion -> . VARIABLE
+    (28) expresion -> . END
 
     COMMA           shift and go to state 6
     LLAIZQ          shift and go to state 7
     CORIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
-    PARENT          shift and go to state 10
-    DECIMAL         shift and go to state 11
-    VARIABLE        shift and go to state 12
-    END             shift and go to state 13
-    STRING          shift and go to state 14
+    PRINT           shift and go to state 10
+    PUTS            shift and go to state 11
+    COMILLA         shift and go to state 12
+    DECIMAL         shift and go to state 13
+    VARIABLE        shift and go to state 14
+    END             shift and go to state 15
 
-    expresion                      shift and go to state 30
+    expresion                      shift and go to state 32
 
-state 16
+state 17
 
     (7) expresion -> expresion RESTA . expresion
     (4) expresion -> . COMMA
@@ -483,27 +531,30 @@ state 16
     (17) expresion -> . expresion MAYORIGUAL expresion
     (18) expresion -> . expresion IGUAL expresion
     (19) expresion -> . expresion DISTINTO expresion
-    (20) expresion -> . expresion COMILLA expresion
-    (21) expresion -> . ENTERO
-    (22) expresion -> . PARENT
-    (23) expresion -> . DECIMAL
-    (24) expresion -> . VARIABLE
-    (25) expresion -> . END
-    (26) expresion -> . STRING
+    (20) expresion -> . expresion PARENT expresion
+    (21) expresion -> . expresion STRING expresion
+    (22) expresion -> . ENTERO
+    (23) expresion -> . PRINT
+    (24) expresion -> . PUTS
+    (25) expresion -> . COMILLA
+    (26) expresion -> . DECIMAL
+    (27) expresion -> . VARIABLE
+    (28) expresion -> . END
 
     COMMA           shift and go to state 6
     LLAIZQ          shift and go to state 7
     CORIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
-    PARENT          shift and go to state 10
-    DECIMAL         shift and go to state 11
-    VARIABLE        shift and go to state 12
-    END             shift and go to state 13
-    STRING          shift and go to state 14
+    PRINT           shift and go to state 10
+    PUTS            shift and go to state 11
+    COMILLA         shift and go to state 12
+    DECIMAL         shift and go to state 13
+    VARIABLE        shift and go to state 14
+    END             shift and go to state 15
 
-    expresion                      shift and go to state 31
+    expresion                      shift and go to state 33
 
-state 17
+state 18
 
     (8) expresion -> expresion MULT . expresion
     (4) expresion -> . COMMA
@@ -521,27 +572,30 @@ state 17
     (17) expresion -> . expresion MAYORIGUAL expresion
     (18) expresion -> . expresion IGUAL expresion
     (19) expresion -> . expresion DISTINTO expresion
-    (20) expresion -> . expresion COMILLA expresion
-    (21) expresion -> . ENTERO
-    (22) expresion -> . PARENT
-    (23) expresion -> . DECIMAL
-    (24) expresion -> . VARIABLE
-    (25) expresion -> . END
-    (26) expresion -> . STRING
+    (20) expresion -> . expresion PARENT expresion
+    (21) expresion -> . expresion STRING expresion
+    (22) expresion -> . ENTERO
+    (23) expresion -> . PRINT
+    (24) expresion -> . PUTS
+    (25) expresion -> . COMILLA
+    (26) expresion -> . DECIMAL
+    (27) expresion -> . VARIABLE
+    (28) expresion -> . END
 
     COMMA           shift and go to state 6
     LLAIZQ          shift and go to state 7
     CORIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
-    PARENT          shift and go to state 10
-    DECIMAL         shift and go to state 11
-    VARIABLE        shift and go to state 12
-    END             shift and go to state 13
-    STRING          shift and go to state 14
+    PRINT           shift and go to state 10
+    PUTS            shift and go to state 11
+    COMILLA         shift and go to state 12
+    DECIMAL         shift and go to state 13
+    VARIABLE        shift and go to state 14
+    END             shift and go to state 15
 
-    expresion                      shift and go to state 32
+    expresion                      shift and go to state 34
 
-state 18
+state 19
 
     (9) expresion -> expresion DIV . expresion
     (4) expresion -> . COMMA
@@ -559,27 +613,30 @@ state 18
     (17) expresion -> . expresion MAYORIGUAL expresion
     (18) expresion -> . expresion IGUAL expresion
     (19) expresion -> . expresion DISTINTO expresion
-    (20) expresion -> . expresion COMILLA expresion
-    (21) expresion -> . ENTERO
-    (22) expresion -> . PARENT
-    (23) expresion -> . DECIMAL
-    (24) expresion -> . VARIABLE
-    (25) expresion -> . END
-    (26) expresion -> . STRING
+    (20) expresion -> . expresion PARENT expresion
+    (21) expresion -> . expresion STRING expresion
+    (22) expresion -> . ENTERO
+    (23) expresion -> . PRINT
+    (24) expresion -> . PUTS
+    (25) expresion -> . COMILLA
+    (26) expresion -> . DECIMAL
+    (27) expresion -> . VARIABLE
+    (28) expresion -> . END
 
     COMMA           shift and go to state 6
     LLAIZQ          shift and go to state 7
     CORIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
-    PARENT          shift and go to state 10
-    DECIMAL         shift and go to state 11
-    VARIABLE        shift and go to state 12
-    END             shift and go to state 13
-    STRING          shift and go to state 14
+    PRINT           shift and go to state 10
+    PUTS            shift and go to state 11
+    COMILLA         shift and go to state 12
+    DECIMAL         shift and go to state 13
+    VARIABLE        shift and go to state 14
+    END             shift and go to state 15
 
-    expresion                      shift and go to state 33
+    expresion                      shift and go to state 35
 
-state 19
+state 20
 
     (10) expresion -> expresion POTENCIA . expresion
     (4) expresion -> . COMMA
@@ -597,27 +654,30 @@ state 19
     (17) expresion -> . expresion MAYORIGUAL expresion
     (18) expresion -> . expresion IGUAL expresion
     (19) expresion -> . expresion DISTINTO expresion
-    (20) expresion -> . expresion COMILLA expresion
-    (21) expresion -> . ENTERO
-    (22) expresion -> . PARENT
-    (23) expresion -> . DECIMAL
-    (24) expresion -> . VARIABLE
-    (25) expresion -> . END
-    (26) expresion -> . STRING
+    (20) expresion -> . expresion PARENT expresion
+    (21) expresion -> . expresion STRING expresion
+    (22) expresion -> . ENTERO
+    (23) expresion -> . PRINT
+    (24) expresion -> . PUTS
+    (25) expresion -> . COMILLA
+    (26) expresion -> . DECIMAL
+    (27) expresion -> . VARIABLE
+    (28) expresion -> . END
 
     COMMA           shift and go to state 6
     LLAIZQ          shift and go to state 7
     CORIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
-    PARENT          shift and go to state 10
-    DECIMAL         shift and go to state 11
-    VARIABLE        shift and go to state 12
-    END             shift and go to state 13
-    STRING          shift and go to state 14
+    PRINT           shift and go to state 10
+    PUTS            shift and go to state 11
+    COMILLA         shift and go to state 12
+    DECIMAL         shift and go to state 13
+    VARIABLE        shift and go to state 14
+    END             shift and go to state 15
 
-    expresion                      shift and go to state 34
+    expresion                      shift and go to state 36
 
-state 20
+state 21
 
     (11) expresion -> expresion MODULO . expresion
     (4) expresion -> . COMMA
@@ -635,27 +695,30 @@ state 20
     (17) expresion -> . expresion MAYORIGUAL expresion
     (18) expresion -> . expresion IGUAL expresion
     (19) expresion -> . expresion DISTINTO expresion
-    (20) expresion -> . expresion COMILLA expresion
-    (21) expresion -> . ENTERO
-    (22) expresion -> . PARENT
-    (23) expresion -> . DECIMAL
-    (24) expresion -> . VARIABLE
-    (25) expresion -> . END
-    (26) expresion -> . STRING
+    (20) expresion -> . expresion PARENT expresion
+    (21) expresion -> . expresion STRING expresion
+    (22) expresion -> . ENTERO
+    (23) expresion -> . PRINT
+    (24) expresion -> . PUTS
+    (25) expresion -> . COMILLA
+    (26) expresion -> . DECIMAL
+    (27) expresion -> . VARIABLE
+    (28) expresion -> . END
 
     COMMA           shift and go to state 6
     LLAIZQ          shift and go to state 7
     CORIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
-    PARENT          shift and go to state 10
-    DECIMAL         shift and go to state 11
-    VARIABLE        shift and go to state 12
-    END             shift and go to state 13
-    STRING          shift and go to state 14
+    PRINT           shift and go to state 10
+    PUTS            shift and go to state 11
+    COMILLA         shift and go to state 12
+    DECIMAL         shift and go to state 13
+    VARIABLE        shift and go to state 14
+    END             shift and go to state 15
 
-    expresion                      shift and go to state 35
+    expresion                      shift and go to state 37
 
-state 21
+state 22
 
     (14) expresion -> expresion MENORQUE . expresion
     (4) expresion -> . COMMA
@@ -673,27 +736,30 @@ state 21
     (17) expresion -> . expresion MAYORIGUAL expresion
     (18) expresion -> . expresion IGUAL expresion
     (19) expresion -> . expresion DISTINTO expresion
-    (20) expresion -> . expresion COMILLA expresion
-    (21) expresion -> . ENTERO
-    (22) expresion -> . PARENT
-    (23) expresion -> . DECIMAL
-    (24) expresion -> . VARIABLE
-    (25) expresion -> . END
-    (26) expresion -> . STRING
+    (20) expresion -> . expresion PARENT expresion
+    (21) expresion -> . expresion STRING expresion
+    (22) expresion -> . ENTERO
+    (23) expresion -> . PRINT
+    (24) expresion -> . PUTS
+    (25) expresion -> . COMILLA
+    (26) expresion -> . DECIMAL
+    (27) expresion -> . VARIABLE
+    (28) expresion -> . END
 
     COMMA           shift and go to state 6
     LLAIZQ          shift and go to state 7
     CORIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
-    PARENT          shift and go to state 10
-    DECIMAL         shift and go to state 11
-    VARIABLE        shift and go to state 12
-    END             shift and go to state 13
-    STRING          shift and go to state 14
+    PRINT           shift and go to state 10
+    PUTS            shift and go to state 11
+    COMILLA         shift and go to state 12
+    DECIMAL         shift and go to state 13
+    VARIABLE        shift and go to state 14
+    END             shift and go to state 15
 
-    expresion                      shift and go to state 36
+    expresion                      shift and go to state 38
 
-state 22
+state 23
 
     (15) expresion -> expresion MAYORQUE . expresion
     (4) expresion -> . COMMA
@@ -711,27 +777,30 @@ state 22
     (17) expresion -> . expresion MAYORIGUAL expresion
     (18) expresion -> . expresion IGUAL expresion
     (19) expresion -> . expresion DISTINTO expresion
-    (20) expresion -> . expresion COMILLA expresion
-    (21) expresion -> . ENTERO
-    (22) expresion -> . PARENT
-    (23) expresion -> . DECIMAL
-    (24) expresion -> . VARIABLE
-    (25) expresion -> . END
-    (26) expresion -> . STRING
+    (20) expresion -> . expresion PARENT expresion
+    (21) expresion -> . expresion STRING expresion
+    (22) expresion -> . ENTERO
+    (23) expresion -> . PRINT
+    (24) expresion -> . PUTS
+    (25) expresion -> . COMILLA
+    (26) expresion -> . DECIMAL
+    (27) expresion -> . VARIABLE
+    (28) expresion -> . END
 
     COMMA           shift and go to state 6
     LLAIZQ          shift and go to state 7
     CORIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
-    PARENT          shift and go to state 10
-    DECIMAL         shift and go to state 11
-    VARIABLE        shift and go to state 12
-    END             shift and go to state 13
-    STRING          shift and go to state 14
+    PRINT           shift and go to state 10
+    PUTS            shift and go to state 11
+    COMILLA         shift and go to state 12
+    DECIMAL         shift and go to state 13
+    VARIABLE        shift and go to state 14
+    END             shift and go to state 15
 
-    expresion                      shift and go to state 37
+    expresion                      shift and go to state 39
 
-state 23
+state 24
 
     (16) expresion -> expresion MENORIGUAL . expresion
     (4) expresion -> . COMMA
@@ -749,27 +818,30 @@ state 23
     (17) expresion -> . expresion MAYORIGUAL expresion
     (18) expresion -> . expresion IGUAL expresion
     (19) expresion -> . expresion DISTINTO expresion
-    (20) expresion -> . expresion COMILLA expresion
-    (21) expresion -> . ENTERO
-    (22) expresion -> . PARENT
-    (23) expresion -> . DECIMAL
-    (24) expresion -> . VARIABLE
-    (25) expresion -> . END
-    (26) expresion -> . STRING
+    (20) expresion -> . expresion PARENT expresion
+    (21) expresion -> . expresion STRING expresion
+    (22) expresion -> . ENTERO
+    (23) expresion -> . PRINT
+    (24) expresion -> . PUTS
+    (25) expresion -> . COMILLA
+    (26) expresion -> . DECIMAL
+    (27) expresion -> . VARIABLE
+    (28) expresion -> . END
 
     COMMA           shift and go to state 6
     LLAIZQ          shift and go to state 7
     CORIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
-    PARENT          shift and go to state 10
-    DECIMAL         shift and go to state 11
-    VARIABLE        shift and go to state 12
-    END             shift and go to state 13
-    STRING          shift and go to state 14
+    PRINT           shift and go to state 10
+    PUTS            shift and go to state 11
+    COMILLA         shift and go to state 12
+    DECIMAL         shift and go to state 13
+    VARIABLE        shift and go to state 14
+    END             shift and go to state 15
 
-    expresion                      shift and go to state 38
+    expresion                      shift and go to state 40
 
-state 24
+state 25
 
     (17) expresion -> expresion MAYORIGUAL . expresion
     (4) expresion -> . COMMA
@@ -787,27 +859,30 @@ state 24
     (17) expresion -> . expresion MAYORIGUAL expresion
     (18) expresion -> . expresion IGUAL expresion
     (19) expresion -> . expresion DISTINTO expresion
-    (20) expresion -> . expresion COMILLA expresion
-    (21) expresion -> . ENTERO
-    (22) expresion -> . PARENT
-    (23) expresion -> . DECIMAL
-    (24) expresion -> . VARIABLE
-    (25) expresion -> . END
-    (26) expresion -> . STRING
+    (20) expresion -> . expresion PARENT expresion
+    (21) expresion -> . expresion STRING expresion
+    (22) expresion -> . ENTERO
+    (23) expresion -> . PRINT
+    (24) expresion -> . PUTS
+    (25) expresion -> . COMILLA
+    (26) expresion -> . DECIMAL
+    (27) expresion -> . VARIABLE
+    (28) expresion -> . END
 
     COMMA           shift and go to state 6
     LLAIZQ          shift and go to state 7
     CORIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
-    PARENT          shift and go to state 10
-    DECIMAL         shift and go to state 11
-    VARIABLE        shift and go to state 12
-    END             shift and go to state 13
-    STRING          shift and go to state 14
+    PRINT           shift and go to state 10
+    PUTS            shift and go to state 11
+    COMILLA         shift and go to state 12
+    DECIMAL         shift and go to state 13
+    VARIABLE        shift and go to state 14
+    END             shift and go to state 15
 
-    expresion                      shift and go to state 39
+    expresion                      shift and go to state 41
 
-state 25
+state 26
 
     (18) expresion -> expresion IGUAL . expresion
     (4) expresion -> . COMMA
@@ -825,27 +900,30 @@ state 25
     (17) expresion -> . expresion MAYORIGUAL expresion
     (18) expresion -> . expresion IGUAL expresion
     (19) expresion -> . expresion DISTINTO expresion
-    (20) expresion -> . expresion COMILLA expresion
-    (21) expresion -> . ENTERO
-    (22) expresion -> . PARENT
-    (23) expresion -> . DECIMAL
-    (24) expresion -> . VARIABLE
-    (25) expresion -> . END
-    (26) expresion -> . STRING
+    (20) expresion -> . expresion PARENT expresion
+    (21) expresion -> . expresion STRING expresion
+    (22) expresion -> . ENTERO
+    (23) expresion -> . PRINT
+    (24) expresion -> . PUTS
+    (25) expresion -> . COMILLA
+    (26) expresion -> . DECIMAL
+    (27) expresion -> . VARIABLE
+    (28) expresion -> . END
 
     COMMA           shift and go to state 6
     LLAIZQ          shift and go to state 7
     CORIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
-    PARENT          shift and go to state 10
-    DECIMAL         shift and go to state 11
-    VARIABLE        shift and go to state 12
-    END             shift and go to state 13
-    STRING          shift and go to state 14
+    PRINT           shift and go to state 10
+    PUTS            shift and go to state 11
+    COMILLA         shift and go to state 12
+    DECIMAL         shift and go to state 13
+    VARIABLE        shift and go to state 14
+    END             shift and go to state 15
 
-    expresion                      shift and go to state 40
+    expresion                      shift and go to state 42
 
-state 26
+state 27
 
     (19) expresion -> expresion DISTINTO . expresion
     (4) expresion -> . COMMA
@@ -863,29 +941,32 @@ state 26
     (17) expresion -> . expresion MAYORIGUAL expresion
     (18) expresion -> . expresion IGUAL expresion
     (19) expresion -> . expresion DISTINTO expresion
-    (20) expresion -> . expresion COMILLA expresion
-    (21) expresion -> . ENTERO
-    (22) expresion -> . PARENT
-    (23) expresion -> . DECIMAL
-    (24) expresion -> . VARIABLE
-    (25) expresion -> . END
-    (26) expresion -> . STRING
+    (20) expresion -> . expresion PARENT expresion
+    (21) expresion -> . expresion STRING expresion
+    (22) expresion -> . ENTERO
+    (23) expresion -> . PRINT
+    (24) expresion -> . PUTS
+    (25) expresion -> . COMILLA
+    (26) expresion -> . DECIMAL
+    (27) expresion -> . VARIABLE
+    (28) expresion -> . END
 
     COMMA           shift and go to state 6
     LLAIZQ          shift and go to state 7
     CORIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
-    PARENT          shift and go to state 10
-    DECIMAL         shift and go to state 11
-    VARIABLE        shift and go to state 12
-    END             shift and go to state 13
-    STRING          shift and go to state 14
+    PRINT           shift and go to state 10
+    PUTS            shift and go to state 11
+    COMILLA         shift and go to state 12
+    DECIMAL         shift and go to state 13
+    VARIABLE        shift and go to state 14
+    END             shift and go to state 15
 
-    expresion                      shift and go to state 41
+    expresion                      shift and go to state 43
 
-state 27
+state 28
 
-    (20) expresion -> expresion COMILLA . expresion
+    (20) expresion -> expresion PARENT . expresion
     (4) expresion -> . COMMA
     (6) expresion -> . expresion SUMA expresion
     (7) expresion -> . expresion RESTA expresion
@@ -901,27 +982,71 @@ state 27
     (17) expresion -> . expresion MAYORIGUAL expresion
     (18) expresion -> . expresion IGUAL expresion
     (19) expresion -> . expresion DISTINTO expresion
-    (20) expresion -> . expresion COMILLA expresion
-    (21) expresion -> . ENTERO
-    (22) expresion -> . PARENT
-    (23) expresion -> . DECIMAL
-    (24) expresion -> . VARIABLE
-    (25) expresion -> . END
-    (26) expresion -> . STRING
+    (20) expresion -> . expresion PARENT expresion
+    (21) expresion -> . expresion STRING expresion
+    (22) expresion -> . ENTERO
+    (23) expresion -> . PRINT
+    (24) expresion -> . PUTS
+    (25) expresion -> . COMILLA
+    (26) expresion -> . DECIMAL
+    (27) expresion -> . VARIABLE
+    (28) expresion -> . END
 
     COMMA           shift and go to state 6
     LLAIZQ          shift and go to state 7
     CORIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
-    PARENT          shift and go to state 10
-    DECIMAL         shift and go to state 11
-    VARIABLE        shift and go to state 12
-    END             shift and go to state 13
-    STRING          shift and go to state 14
+    PRINT           shift and go to state 10
+    PUTS            shift and go to state 11
+    COMILLA         shift and go to state 12
+    DECIMAL         shift and go to state 13
+    VARIABLE        shift and go to state 14
+    END             shift and go to state 15
 
-    expresion                      shift and go to state 42
+    expresion                      shift and go to state 44
 
-state 28
+state 29
+
+    (21) expresion -> expresion STRING . expresion
+    (4) expresion -> . COMMA
+    (6) expresion -> . expresion SUMA expresion
+    (7) expresion -> . expresion RESTA expresion
+    (8) expresion -> . expresion MULT expresion
+    (9) expresion -> . expresion DIV expresion
+    (10) expresion -> . expresion POTENCIA expresion
+    (11) expresion -> . expresion MODULO expresion
+    (12) expresion -> . LLAIZQ expresion LLADER
+    (13) expresion -> . CORIZQ expresion CORDER
+    (14) expresion -> . expresion MENORQUE expresion
+    (15) expresion -> . expresion MAYORQUE expresion
+    (16) expresion -> . expresion MENORIGUAL expresion
+    (17) expresion -> . expresion MAYORIGUAL expresion
+    (18) expresion -> . expresion IGUAL expresion
+    (19) expresion -> . expresion DISTINTO expresion
+    (20) expresion -> . expresion PARENT expresion
+    (21) expresion -> . expresion STRING expresion
+    (22) expresion -> . ENTERO
+    (23) expresion -> . PRINT
+    (24) expresion -> . PUTS
+    (25) expresion -> . COMILLA
+    (26) expresion -> . DECIMAL
+    (27) expresion -> . VARIABLE
+    (28) expresion -> . END
+
+    COMMA           shift and go to state 6
+    LLAIZQ          shift and go to state 7
+    CORIZQ          shift and go to state 8
+    ENTERO          shift and go to state 9
+    PRINT           shift and go to state 10
+    PUTS            shift and go to state 11
+    COMILLA         shift and go to state 12
+    DECIMAL         shift and go to state 13
+    VARIABLE        shift and go to state 14
+    END             shift and go to state 15
+
+    expresion                      shift and go to state 45
+
+state 30
 
     (12) expresion -> LLAIZQ expresion . LLADER
     (6) expresion -> expresion . SUMA expresion
@@ -936,25 +1061,27 @@ state 28
     (17) expresion -> expresion . MAYORIGUAL expresion
     (18) expresion -> expresion . IGUAL expresion
     (19) expresion -> expresion . DISTINTO expresion
-    (20) expresion -> expresion . COMILLA expresion
+    (20) expresion -> expresion . PARENT expresion
+    (21) expresion -> expresion . STRING expresion
 
-    LLADER          shift and go to state 43
-    SUMA            shift and go to state 15
-    RESTA           shift and go to state 16
-    MULT            shift and go to state 17
-    DIV             shift and go to state 18
-    POTENCIA        shift and go to state 19
-    MODULO          shift and go to state 20
-    MENORQUE        shift and go to state 21
-    MAYORQUE        shift and go to state 22
-    MENORIGUAL      shift and go to state 23
-    MAYORIGUAL      shift and go to state 24
-    IGUAL           shift and go to state 25
-    DISTINTO        shift and go to state 26
-    COMILLA         shift and go to state 27
+    LLADER          shift and go to state 46
+    SUMA            shift and go to state 16
+    RESTA           shift and go to state 17
+    MULT            shift and go to state 18
+    DIV             shift and go to state 19
+    POTENCIA        shift and go to state 20
+    MODULO          shift and go to state 21
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 24
+    MAYORIGUAL      shift and go to state 25
+    IGUAL           shift and go to state 26
+    DISTINTO        shift and go to state 27
+    PARENT          shift and go to state 28
+    STRING          shift and go to state 29
 
 
-state 29
+state 31
 
     (13) expresion -> CORIZQ expresion . CORDER
     (6) expresion -> expresion . SUMA expresion
@@ -969,25 +1096,27 @@ state 29
     (17) expresion -> expresion . MAYORIGUAL expresion
     (18) expresion -> expresion . IGUAL expresion
     (19) expresion -> expresion . DISTINTO expresion
-    (20) expresion -> expresion . COMILLA expresion
+    (20) expresion -> expresion . PARENT expresion
+    (21) expresion -> expresion . STRING expresion
 
-    CORDER          shift and go to state 44
-    SUMA            shift and go to state 15
-    RESTA           shift and go to state 16
-    MULT            shift and go to state 17
-    DIV             shift and go to state 18
-    POTENCIA        shift and go to state 19
-    MODULO          shift and go to state 20
-    MENORQUE        shift and go to state 21
-    MAYORQUE        shift and go to state 22
-    MENORIGUAL      shift and go to state 23
-    MAYORIGUAL      shift and go to state 24
-    IGUAL           shift and go to state 25
-    DISTINTO        shift and go to state 26
-    COMILLA         shift and go to state 27
+    CORDER          shift and go to state 47
+    SUMA            shift and go to state 16
+    RESTA           shift and go to state 17
+    MULT            shift and go to state 18
+    DIV             shift and go to state 19
+    POTENCIA        shift and go to state 20
+    MODULO          shift and go to state 21
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 24
+    MAYORIGUAL      shift and go to state 25
+    IGUAL           shift and go to state 26
+    DISTINTO        shift and go to state 27
+    PARENT          shift and go to state 28
+    STRING          shift and go to state 29
 
 
-state 30
+state 32
 
     (6) expresion -> expresion SUMA expresion .
     (6) expresion -> expresion . SUMA expresion
@@ -1002,7 +1131,8 @@ state 30
     (17) expresion -> expresion . MAYORIGUAL expresion
     (18) expresion -> expresion . IGUAL expresion
     (19) expresion -> expresion . DISTINTO expresion
-    (20) expresion -> expresion . COMILLA expresion
+    (20) expresion -> expresion . PARENT expresion
+    (21) expresion -> expresion . STRING expresion
 
     SUMA            reduce using rule 6 (expresion -> expresion SUMA expresion .)
     RESTA           reduce using rule 6 (expresion -> expresion SUMA expresion .)
@@ -1014,29 +1144,31 @@ state 30
     MAYORIGUAL      reduce using rule 6 (expresion -> expresion SUMA expresion .)
     IGUAL           reduce using rule 6 (expresion -> expresion SUMA expresion .)
     DISTINTO        reduce using rule 6 (expresion -> expresion SUMA expresion .)
+    PARENT          reduce using rule 6 (expresion -> expresion SUMA expresion .)
+    STRING          reduce using rule 6 (expresion -> expresion SUMA expresion .)
     $end            reduce using rule 6 (expresion -> expresion SUMA expresion .)
     LLADER          reduce using rule 6 (expresion -> expresion SUMA expresion .)
     CORDER          reduce using rule 6 (expresion -> expresion SUMA expresion .)
-    MULT            shift and go to state 17
-    DIV             shift and go to state 18
-    COMILLA         shift and go to state 27
+    MULT            shift and go to state 18
+    DIV             shift and go to state 19
 
   ! MULT            [ reduce using rule 6 (expresion -> expresion SUMA expresion .) ]
   ! DIV             [ reduce using rule 6 (expresion -> expresion SUMA expresion .) ]
-  ! COMILLA         [ reduce using rule 6 (expresion -> expresion SUMA expresion .) ]
-  ! SUMA            [ shift and go to state 15 ]
-  ! RESTA           [ shift and go to state 16 ]
-  ! POTENCIA        [ shift and go to state 19 ]
-  ! MODULO          [ shift and go to state 20 ]
-  ! MENORQUE        [ shift and go to state 21 ]
-  ! MAYORQUE        [ shift and go to state 22 ]
-  ! MENORIGUAL      [ shift and go to state 23 ]
-  ! MAYORIGUAL      [ shift and go to state 24 ]
-  ! IGUAL           [ shift and go to state 25 ]
-  ! DISTINTO        [ shift and go to state 26 ]
+  ! SUMA            [ shift and go to state 16 ]
+  ! RESTA           [ shift and go to state 17 ]
+  ! POTENCIA        [ shift and go to state 20 ]
+  ! MODULO          [ shift and go to state 21 ]
+  ! MENORQUE        [ shift and go to state 22 ]
+  ! MAYORQUE        [ shift and go to state 23 ]
+  ! MENORIGUAL      [ shift and go to state 24 ]
+  ! MAYORIGUAL      [ shift and go to state 25 ]
+  ! IGUAL           [ shift and go to state 26 ]
+  ! DISTINTO        [ shift and go to state 27 ]
+  ! PARENT          [ shift and go to state 28 ]
+  ! STRING          [ shift and go to state 29 ]
 
 
-state 31
+state 33
 
     (7) expresion -> expresion RESTA expresion .
     (6) expresion -> expresion . SUMA expresion
@@ -1051,7 +1183,8 @@ state 31
     (17) expresion -> expresion . MAYORIGUAL expresion
     (18) expresion -> expresion . IGUAL expresion
     (19) expresion -> expresion . DISTINTO expresion
-    (20) expresion -> expresion . COMILLA expresion
+    (20) expresion -> expresion . PARENT expresion
+    (21) expresion -> expresion . STRING expresion
 
     SUMA            reduce using rule 7 (expresion -> expresion RESTA expresion .)
     RESTA           reduce using rule 7 (expresion -> expresion RESTA expresion .)
@@ -1063,29 +1196,31 @@ state 31
     MAYORIGUAL      reduce using rule 7 (expresion -> expresion RESTA expresion .)
     IGUAL           reduce using rule 7 (expresion -> expresion RESTA expresion .)
     DISTINTO        reduce using rule 7 (expresion -> expresion RESTA expresion .)
+    PARENT          reduce using rule 7 (expresion -> expresion RESTA expresion .)
+    STRING          reduce using rule 7 (expresion -> expresion RESTA expresion .)
     $end            reduce using rule 7 (expresion -> expresion RESTA expresion .)
     LLADER          reduce using rule 7 (expresion -> expresion RESTA expresion .)
     CORDER          reduce using rule 7 (expresion -> expresion RESTA expresion .)
-    MULT            shift and go to state 17
-    DIV             shift and go to state 18
-    COMILLA         shift and go to state 27
+    MULT            shift and go to state 18
+    DIV             shift and go to state 19
 
   ! MULT            [ reduce using rule 7 (expresion -> expresion RESTA expresion .) ]
   ! DIV             [ reduce using rule 7 (expresion -> expresion RESTA expresion .) ]
-  ! COMILLA         [ reduce using rule 7 (expresion -> expresion RESTA expresion .) ]
-  ! SUMA            [ shift and go to state 15 ]
-  ! RESTA           [ shift and go to state 16 ]
-  ! POTENCIA        [ shift and go to state 19 ]
-  ! MODULO          [ shift and go to state 20 ]
-  ! MENORQUE        [ shift and go to state 21 ]
-  ! MAYORQUE        [ shift and go to state 22 ]
-  ! MENORIGUAL      [ shift and go to state 23 ]
-  ! MAYORIGUAL      [ shift and go to state 24 ]
-  ! IGUAL           [ shift and go to state 25 ]
-  ! DISTINTO        [ shift and go to state 26 ]
+  ! SUMA            [ shift and go to state 16 ]
+  ! RESTA           [ shift and go to state 17 ]
+  ! POTENCIA        [ shift and go to state 20 ]
+  ! MODULO          [ shift and go to state 21 ]
+  ! MENORQUE        [ shift and go to state 22 ]
+  ! MAYORQUE        [ shift and go to state 23 ]
+  ! MENORIGUAL      [ shift and go to state 24 ]
+  ! MAYORIGUAL      [ shift and go to state 25 ]
+  ! IGUAL           [ shift and go to state 26 ]
+  ! DISTINTO        [ shift and go to state 27 ]
+  ! PARENT          [ shift and go to state 28 ]
+  ! STRING          [ shift and go to state 29 ]
 
 
-state 32
+state 34
 
     (8) expresion -> expresion MULT expresion .
     (6) expresion -> expresion . SUMA expresion
@@ -1100,7 +1235,8 @@ state 32
     (17) expresion -> expresion . MAYORIGUAL expresion
     (18) expresion -> expresion . IGUAL expresion
     (19) expresion -> expresion . DISTINTO expresion
-    (20) expresion -> expresion . COMILLA expresion
+    (20) expresion -> expresion . PARENT expresion
+    (21) expresion -> expresion . STRING expresion
 
     SUMA            reduce using rule 8 (expresion -> expresion MULT expresion .)
     RESTA           reduce using rule 8 (expresion -> expresion MULT expresion .)
@@ -1114,27 +1250,29 @@ state 32
     MAYORIGUAL      reduce using rule 8 (expresion -> expresion MULT expresion .)
     IGUAL           reduce using rule 8 (expresion -> expresion MULT expresion .)
     DISTINTO        reduce using rule 8 (expresion -> expresion MULT expresion .)
+    PARENT          reduce using rule 8 (expresion -> expresion MULT expresion .)
+    STRING          reduce using rule 8 (expresion -> expresion MULT expresion .)
     $end            reduce using rule 8 (expresion -> expresion MULT expresion .)
     LLADER          reduce using rule 8 (expresion -> expresion MULT expresion .)
     CORDER          reduce using rule 8 (expresion -> expresion MULT expresion .)
-    COMILLA         shift and go to state 27
 
-  ! COMILLA         [ reduce using rule 8 (expresion -> expresion MULT expresion .) ]
-  ! SUMA            [ shift and go to state 15 ]
-  ! RESTA           [ shift and go to state 16 ]
-  ! MULT            [ shift and go to state 17 ]
-  ! DIV             [ shift and go to state 18 ]
-  ! POTENCIA        [ shift and go to state 19 ]
-  ! MODULO          [ shift and go to state 20 ]
-  ! MENORQUE        [ shift and go to state 21 ]
-  ! MAYORQUE        [ shift and go to state 22 ]
-  ! MENORIGUAL      [ shift and go to state 23 ]
-  ! MAYORIGUAL      [ shift and go to state 24 ]
-  ! IGUAL           [ shift and go to state 25 ]
-  ! DISTINTO        [ shift and go to state 26 ]
+  ! SUMA            [ shift and go to state 16 ]
+  ! RESTA           [ shift and go to state 17 ]
+  ! MULT            [ shift and go to state 18 ]
+  ! DIV             [ shift and go to state 19 ]
+  ! POTENCIA        [ shift and go to state 20 ]
+  ! MODULO          [ shift and go to state 21 ]
+  ! MENORQUE        [ shift and go to state 22 ]
+  ! MAYORQUE        [ shift and go to state 23 ]
+  ! MENORIGUAL      [ shift and go to state 24 ]
+  ! MAYORIGUAL      [ shift and go to state 25 ]
+  ! IGUAL           [ shift and go to state 26 ]
+  ! DISTINTO        [ shift and go to state 27 ]
+  ! PARENT          [ shift and go to state 28 ]
+  ! STRING          [ shift and go to state 29 ]
 
 
-state 33
+state 35
 
     (9) expresion -> expresion DIV expresion .
     (6) expresion -> expresion . SUMA expresion
@@ -1149,7 +1287,8 @@ state 33
     (17) expresion -> expresion . MAYORIGUAL expresion
     (18) expresion -> expresion . IGUAL expresion
     (19) expresion -> expresion . DISTINTO expresion
-    (20) expresion -> expresion . COMILLA expresion
+    (20) expresion -> expresion . PARENT expresion
+    (21) expresion -> expresion . STRING expresion
 
     SUMA            reduce using rule 9 (expresion -> expresion DIV expresion .)
     RESTA           reduce using rule 9 (expresion -> expresion DIV expresion .)
@@ -1163,27 +1302,29 @@ state 33
     MAYORIGUAL      reduce using rule 9 (expresion -> expresion DIV expresion .)
     IGUAL           reduce using rule 9 (expresion -> expresion DIV expresion .)
     DISTINTO        reduce using rule 9 (expresion -> expresion DIV expresion .)
+    PARENT          reduce using rule 9 (expresion -> expresion DIV expresion .)
+    STRING          reduce using rule 9 (expresion -> expresion DIV expresion .)
     $end            reduce using rule 9 (expresion -> expresion DIV expresion .)
     LLADER          reduce using rule 9 (expresion -> expresion DIV expresion .)
     CORDER          reduce using rule 9 (expresion -> expresion DIV expresion .)
-    COMILLA         shift and go to state 27
 
-  ! COMILLA         [ reduce using rule 9 (expresion -> expresion DIV expresion .) ]
-  ! SUMA            [ shift and go to state 15 ]
-  ! RESTA           [ shift and go to state 16 ]
-  ! MULT            [ shift and go to state 17 ]
-  ! DIV             [ shift and go to state 18 ]
-  ! POTENCIA        [ shift and go to state 19 ]
-  ! MODULO          [ shift and go to state 20 ]
-  ! MENORQUE        [ shift and go to state 21 ]
-  ! MAYORQUE        [ shift and go to state 22 ]
-  ! MENORIGUAL      [ shift and go to state 23 ]
-  ! MAYORIGUAL      [ shift and go to state 24 ]
-  ! IGUAL           [ shift and go to state 25 ]
-  ! DISTINTO        [ shift and go to state 26 ]
+  ! SUMA            [ shift and go to state 16 ]
+  ! RESTA           [ shift and go to state 17 ]
+  ! MULT            [ shift and go to state 18 ]
+  ! DIV             [ shift and go to state 19 ]
+  ! POTENCIA        [ shift and go to state 20 ]
+  ! MODULO          [ shift and go to state 21 ]
+  ! MENORQUE        [ shift and go to state 22 ]
+  ! MAYORQUE        [ shift and go to state 23 ]
+  ! MENORIGUAL      [ shift and go to state 24 ]
+  ! MAYORIGUAL      [ shift and go to state 25 ]
+  ! IGUAL           [ shift and go to state 26 ]
+  ! DISTINTO        [ shift and go to state 27 ]
+  ! PARENT          [ shift and go to state 28 ]
+  ! STRING          [ shift and go to state 29 ]
 
 
-state 34
+state 36
 
     (10) expresion -> expresion POTENCIA expresion .
     (6) expresion -> expresion . SUMA expresion
@@ -1198,7 +1339,8 @@ state 34
     (17) expresion -> expresion . MAYORIGUAL expresion
     (18) expresion -> expresion . IGUAL expresion
     (19) expresion -> expresion . DISTINTO expresion
-    (20) expresion -> expresion . COMILLA expresion
+    (20) expresion -> expresion . PARENT expresion
+    (21) expresion -> expresion . STRING expresion
 
   ! shift/reduce conflict for SUMA resolved as shift
   ! shift/reduce conflict for RESTA resolved as shift
@@ -1212,23 +1354,25 @@ state 34
   ! shift/reduce conflict for MAYORIGUAL resolved as shift
   ! shift/reduce conflict for IGUAL resolved as shift
   ! shift/reduce conflict for DISTINTO resolved as shift
-  ! shift/reduce conflict for COMILLA resolved as shift
+  ! shift/reduce conflict for PARENT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
     $end            reduce using rule 10 (expresion -> expresion POTENCIA expresion .)
     LLADER          reduce using rule 10 (expresion -> expresion POTENCIA expresion .)
     CORDER          reduce using rule 10 (expresion -> expresion POTENCIA expresion .)
-    SUMA            shift and go to state 15
-    RESTA           shift and go to state 16
-    MULT            shift and go to state 17
-    DIV             shift and go to state 18
-    POTENCIA        shift and go to state 19
-    MODULO          shift and go to state 20
-    MENORQUE        shift and go to state 21
-    MAYORQUE        shift and go to state 22
-    MENORIGUAL      shift and go to state 23
-    MAYORIGUAL      shift and go to state 24
-    IGUAL           shift and go to state 25
-    DISTINTO        shift and go to state 26
-    COMILLA         shift and go to state 27
+    SUMA            shift and go to state 16
+    RESTA           shift and go to state 17
+    MULT            shift and go to state 18
+    DIV             shift and go to state 19
+    POTENCIA        shift and go to state 20
+    MODULO          shift and go to state 21
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 24
+    MAYORIGUAL      shift and go to state 25
+    IGUAL           shift and go to state 26
+    DISTINTO        shift and go to state 27
+    PARENT          shift and go to state 28
+    STRING          shift and go to state 29
 
   ! SUMA            [ reduce using rule 10 (expresion -> expresion POTENCIA expresion .) ]
   ! RESTA           [ reduce using rule 10 (expresion -> expresion POTENCIA expresion .) ]
@@ -1242,10 +1386,11 @@ state 34
   ! MAYORIGUAL      [ reduce using rule 10 (expresion -> expresion POTENCIA expresion .) ]
   ! IGUAL           [ reduce using rule 10 (expresion -> expresion POTENCIA expresion .) ]
   ! DISTINTO        [ reduce using rule 10 (expresion -> expresion POTENCIA expresion .) ]
-  ! COMILLA         [ reduce using rule 10 (expresion -> expresion POTENCIA expresion .) ]
+  ! PARENT          [ reduce using rule 10 (expresion -> expresion POTENCIA expresion .) ]
+  ! STRING          [ reduce using rule 10 (expresion -> expresion POTENCIA expresion .) ]
 
 
-state 35
+state 37
 
     (11) expresion -> expresion MODULO expresion .
     (6) expresion -> expresion . SUMA expresion
@@ -1260,7 +1405,8 @@ state 35
     (17) expresion -> expresion . MAYORIGUAL expresion
     (18) expresion -> expresion . IGUAL expresion
     (19) expresion -> expresion . DISTINTO expresion
-    (20) expresion -> expresion . COMILLA expresion
+    (20) expresion -> expresion . PARENT expresion
+    (21) expresion -> expresion . STRING expresion
 
   ! shift/reduce conflict for SUMA resolved as shift
   ! shift/reduce conflict for RESTA resolved as shift
@@ -1274,23 +1420,25 @@ state 35
   ! shift/reduce conflict for MAYORIGUAL resolved as shift
   ! shift/reduce conflict for IGUAL resolved as shift
   ! shift/reduce conflict for DISTINTO resolved as shift
-  ! shift/reduce conflict for COMILLA resolved as shift
+  ! shift/reduce conflict for PARENT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
     $end            reduce using rule 11 (expresion -> expresion MODULO expresion .)
     LLADER          reduce using rule 11 (expresion -> expresion MODULO expresion .)
     CORDER          reduce using rule 11 (expresion -> expresion MODULO expresion .)
-    SUMA            shift and go to state 15
-    RESTA           shift and go to state 16
-    MULT            shift and go to state 17
-    DIV             shift and go to state 18
-    POTENCIA        shift and go to state 19
-    MODULO          shift and go to state 20
-    MENORQUE        shift and go to state 21
-    MAYORQUE        shift and go to state 22
-    MENORIGUAL      shift and go to state 23
-    MAYORIGUAL      shift and go to state 24
-    IGUAL           shift and go to state 25
-    DISTINTO        shift and go to state 26
-    COMILLA         shift and go to state 27
+    SUMA            shift and go to state 16
+    RESTA           shift and go to state 17
+    MULT            shift and go to state 18
+    DIV             shift and go to state 19
+    POTENCIA        shift and go to state 20
+    MODULO          shift and go to state 21
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 24
+    MAYORIGUAL      shift and go to state 25
+    IGUAL           shift and go to state 26
+    DISTINTO        shift and go to state 27
+    PARENT          shift and go to state 28
+    STRING          shift and go to state 29
 
   ! SUMA            [ reduce using rule 11 (expresion -> expresion MODULO expresion .) ]
   ! RESTA           [ reduce using rule 11 (expresion -> expresion MODULO expresion .) ]
@@ -1304,10 +1452,11 @@ state 35
   ! MAYORIGUAL      [ reduce using rule 11 (expresion -> expresion MODULO expresion .) ]
   ! IGUAL           [ reduce using rule 11 (expresion -> expresion MODULO expresion .) ]
   ! DISTINTO        [ reduce using rule 11 (expresion -> expresion MODULO expresion .) ]
-  ! COMILLA         [ reduce using rule 11 (expresion -> expresion MODULO expresion .) ]
+  ! PARENT          [ reduce using rule 11 (expresion -> expresion MODULO expresion .) ]
+  ! STRING          [ reduce using rule 11 (expresion -> expresion MODULO expresion .) ]
 
 
-state 36
+state 38
 
     (14) expresion -> expresion MENORQUE expresion .
     (6) expresion -> expresion . SUMA expresion
@@ -1322,7 +1471,8 @@ state 36
     (17) expresion -> expresion . MAYORIGUAL expresion
     (18) expresion -> expresion . IGUAL expresion
     (19) expresion -> expresion . DISTINTO expresion
-    (20) expresion -> expresion . COMILLA expresion
+    (20) expresion -> expresion . PARENT expresion
+    (21) expresion -> expresion . STRING expresion
 
   ! shift/reduce conflict for SUMA resolved as shift
   ! shift/reduce conflict for RESTA resolved as shift
@@ -1336,23 +1486,25 @@ state 36
   ! shift/reduce conflict for MAYORIGUAL resolved as shift
   ! shift/reduce conflict for IGUAL resolved as shift
   ! shift/reduce conflict for DISTINTO resolved as shift
-  ! shift/reduce conflict for COMILLA resolved as shift
+  ! shift/reduce conflict for PARENT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
     $end            reduce using rule 14 (expresion -> expresion MENORQUE expresion .)
     LLADER          reduce using rule 14 (expresion -> expresion MENORQUE expresion .)
     CORDER          reduce using rule 14 (expresion -> expresion MENORQUE expresion .)
-    SUMA            shift and go to state 15
-    RESTA           shift and go to state 16
-    MULT            shift and go to state 17
-    DIV             shift and go to state 18
-    POTENCIA        shift and go to state 19
-    MODULO          shift and go to state 20
-    MENORQUE        shift and go to state 21
-    MAYORQUE        shift and go to state 22
-    MENORIGUAL      shift and go to state 23
-    MAYORIGUAL      shift and go to state 24
-    IGUAL           shift and go to state 25
-    DISTINTO        shift and go to state 26
-    COMILLA         shift and go to state 27
+    SUMA            shift and go to state 16
+    RESTA           shift and go to state 17
+    MULT            shift and go to state 18
+    DIV             shift and go to state 19
+    POTENCIA        shift and go to state 20
+    MODULO          shift and go to state 21
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 24
+    MAYORIGUAL      shift and go to state 25
+    IGUAL           shift and go to state 26
+    DISTINTO        shift and go to state 27
+    PARENT          shift and go to state 28
+    STRING          shift and go to state 29
 
   ! SUMA            [ reduce using rule 14 (expresion -> expresion MENORQUE expresion .) ]
   ! RESTA           [ reduce using rule 14 (expresion -> expresion MENORQUE expresion .) ]
@@ -1366,10 +1518,11 @@ state 36
   ! MAYORIGUAL      [ reduce using rule 14 (expresion -> expresion MENORQUE expresion .) ]
   ! IGUAL           [ reduce using rule 14 (expresion -> expresion MENORQUE expresion .) ]
   ! DISTINTO        [ reduce using rule 14 (expresion -> expresion MENORQUE expresion .) ]
-  ! COMILLA         [ reduce using rule 14 (expresion -> expresion MENORQUE expresion .) ]
+  ! PARENT          [ reduce using rule 14 (expresion -> expresion MENORQUE expresion .) ]
+  ! STRING          [ reduce using rule 14 (expresion -> expresion MENORQUE expresion .) ]
 
 
-state 37
+state 39
 
     (15) expresion -> expresion MAYORQUE expresion .
     (6) expresion -> expresion . SUMA expresion
@@ -1384,7 +1537,8 @@ state 37
     (17) expresion -> expresion . MAYORIGUAL expresion
     (18) expresion -> expresion . IGUAL expresion
     (19) expresion -> expresion . DISTINTO expresion
-    (20) expresion -> expresion . COMILLA expresion
+    (20) expresion -> expresion . PARENT expresion
+    (21) expresion -> expresion . STRING expresion
 
   ! shift/reduce conflict for SUMA resolved as shift
   ! shift/reduce conflict for RESTA resolved as shift
@@ -1398,23 +1552,25 @@ state 37
   ! shift/reduce conflict for MAYORIGUAL resolved as shift
   ! shift/reduce conflict for IGUAL resolved as shift
   ! shift/reduce conflict for DISTINTO resolved as shift
-  ! shift/reduce conflict for COMILLA resolved as shift
+  ! shift/reduce conflict for PARENT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
     $end            reduce using rule 15 (expresion -> expresion MAYORQUE expresion .)
     LLADER          reduce using rule 15 (expresion -> expresion MAYORQUE expresion .)
     CORDER          reduce using rule 15 (expresion -> expresion MAYORQUE expresion .)
-    SUMA            shift and go to state 15
-    RESTA           shift and go to state 16
-    MULT            shift and go to state 17
-    DIV             shift and go to state 18
-    POTENCIA        shift and go to state 19
-    MODULO          shift and go to state 20
-    MENORQUE        shift and go to state 21
-    MAYORQUE        shift and go to state 22
-    MENORIGUAL      shift and go to state 23
-    MAYORIGUAL      shift and go to state 24
-    IGUAL           shift and go to state 25
-    DISTINTO        shift and go to state 26
-    COMILLA         shift and go to state 27
+    SUMA            shift and go to state 16
+    RESTA           shift and go to state 17
+    MULT            shift and go to state 18
+    DIV             shift and go to state 19
+    POTENCIA        shift and go to state 20
+    MODULO          shift and go to state 21
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 24
+    MAYORIGUAL      shift and go to state 25
+    IGUAL           shift and go to state 26
+    DISTINTO        shift and go to state 27
+    PARENT          shift and go to state 28
+    STRING          shift and go to state 29
 
   ! SUMA            [ reduce using rule 15 (expresion -> expresion MAYORQUE expresion .) ]
   ! RESTA           [ reduce using rule 15 (expresion -> expresion MAYORQUE expresion .) ]
@@ -1428,10 +1584,11 @@ state 37
   ! MAYORIGUAL      [ reduce using rule 15 (expresion -> expresion MAYORQUE expresion .) ]
   ! IGUAL           [ reduce using rule 15 (expresion -> expresion MAYORQUE expresion .) ]
   ! DISTINTO        [ reduce using rule 15 (expresion -> expresion MAYORQUE expresion .) ]
-  ! COMILLA         [ reduce using rule 15 (expresion -> expresion MAYORQUE expresion .) ]
+  ! PARENT          [ reduce using rule 15 (expresion -> expresion MAYORQUE expresion .) ]
+  ! STRING          [ reduce using rule 15 (expresion -> expresion MAYORQUE expresion .) ]
 
 
-state 38
+state 40
 
     (16) expresion -> expresion MENORIGUAL expresion .
     (6) expresion -> expresion . SUMA expresion
@@ -1446,7 +1603,8 @@ state 38
     (17) expresion -> expresion . MAYORIGUAL expresion
     (18) expresion -> expresion . IGUAL expresion
     (19) expresion -> expresion . DISTINTO expresion
-    (20) expresion -> expresion . COMILLA expresion
+    (20) expresion -> expresion . PARENT expresion
+    (21) expresion -> expresion . STRING expresion
 
   ! shift/reduce conflict for SUMA resolved as shift
   ! shift/reduce conflict for RESTA resolved as shift
@@ -1460,23 +1618,25 @@ state 38
   ! shift/reduce conflict for MAYORIGUAL resolved as shift
   ! shift/reduce conflict for IGUAL resolved as shift
   ! shift/reduce conflict for DISTINTO resolved as shift
-  ! shift/reduce conflict for COMILLA resolved as shift
+  ! shift/reduce conflict for PARENT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
     $end            reduce using rule 16 (expresion -> expresion MENORIGUAL expresion .)
     LLADER          reduce using rule 16 (expresion -> expresion MENORIGUAL expresion .)
     CORDER          reduce using rule 16 (expresion -> expresion MENORIGUAL expresion .)
-    SUMA            shift and go to state 15
-    RESTA           shift and go to state 16
-    MULT            shift and go to state 17
-    DIV             shift and go to state 18
-    POTENCIA        shift and go to state 19
-    MODULO          shift and go to state 20
-    MENORQUE        shift and go to state 21
-    MAYORQUE        shift and go to state 22
-    MENORIGUAL      shift and go to state 23
-    MAYORIGUAL      shift and go to state 24
-    IGUAL           shift and go to state 25
-    DISTINTO        shift and go to state 26
-    COMILLA         shift and go to state 27
+    SUMA            shift and go to state 16
+    RESTA           shift and go to state 17
+    MULT            shift and go to state 18
+    DIV             shift and go to state 19
+    POTENCIA        shift and go to state 20
+    MODULO          shift and go to state 21
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 24
+    MAYORIGUAL      shift and go to state 25
+    IGUAL           shift and go to state 26
+    DISTINTO        shift and go to state 27
+    PARENT          shift and go to state 28
+    STRING          shift and go to state 29
 
   ! SUMA            [ reduce using rule 16 (expresion -> expresion MENORIGUAL expresion .) ]
   ! RESTA           [ reduce using rule 16 (expresion -> expresion MENORIGUAL expresion .) ]
@@ -1490,10 +1650,11 @@ state 38
   ! MAYORIGUAL      [ reduce using rule 16 (expresion -> expresion MENORIGUAL expresion .) ]
   ! IGUAL           [ reduce using rule 16 (expresion -> expresion MENORIGUAL expresion .) ]
   ! DISTINTO        [ reduce using rule 16 (expresion -> expresion MENORIGUAL expresion .) ]
-  ! COMILLA         [ reduce using rule 16 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! PARENT          [ reduce using rule 16 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! STRING          [ reduce using rule 16 (expresion -> expresion MENORIGUAL expresion .) ]
 
 
-state 39
+state 41
 
     (17) expresion -> expresion MAYORIGUAL expresion .
     (6) expresion -> expresion . SUMA expresion
@@ -1508,7 +1669,8 @@ state 39
     (17) expresion -> expresion . MAYORIGUAL expresion
     (18) expresion -> expresion . IGUAL expresion
     (19) expresion -> expresion . DISTINTO expresion
-    (20) expresion -> expresion . COMILLA expresion
+    (20) expresion -> expresion . PARENT expresion
+    (21) expresion -> expresion . STRING expresion
 
   ! shift/reduce conflict for SUMA resolved as shift
   ! shift/reduce conflict for RESTA resolved as shift
@@ -1522,23 +1684,25 @@ state 39
   ! shift/reduce conflict for MAYORIGUAL resolved as shift
   ! shift/reduce conflict for IGUAL resolved as shift
   ! shift/reduce conflict for DISTINTO resolved as shift
-  ! shift/reduce conflict for COMILLA resolved as shift
+  ! shift/reduce conflict for PARENT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
     $end            reduce using rule 17 (expresion -> expresion MAYORIGUAL expresion .)
     LLADER          reduce using rule 17 (expresion -> expresion MAYORIGUAL expresion .)
     CORDER          reduce using rule 17 (expresion -> expresion MAYORIGUAL expresion .)
-    SUMA            shift and go to state 15
-    RESTA           shift and go to state 16
-    MULT            shift and go to state 17
-    DIV             shift and go to state 18
-    POTENCIA        shift and go to state 19
-    MODULO          shift and go to state 20
-    MENORQUE        shift and go to state 21
-    MAYORQUE        shift and go to state 22
-    MENORIGUAL      shift and go to state 23
-    MAYORIGUAL      shift and go to state 24
-    IGUAL           shift and go to state 25
-    DISTINTO        shift and go to state 26
-    COMILLA         shift and go to state 27
+    SUMA            shift and go to state 16
+    RESTA           shift and go to state 17
+    MULT            shift and go to state 18
+    DIV             shift and go to state 19
+    POTENCIA        shift and go to state 20
+    MODULO          shift and go to state 21
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 24
+    MAYORIGUAL      shift and go to state 25
+    IGUAL           shift and go to state 26
+    DISTINTO        shift and go to state 27
+    PARENT          shift and go to state 28
+    STRING          shift and go to state 29
 
   ! SUMA            [ reduce using rule 17 (expresion -> expresion MAYORIGUAL expresion .) ]
   ! RESTA           [ reduce using rule 17 (expresion -> expresion MAYORIGUAL expresion .) ]
@@ -1552,10 +1716,11 @@ state 39
   ! MAYORIGUAL      [ reduce using rule 17 (expresion -> expresion MAYORIGUAL expresion .) ]
   ! IGUAL           [ reduce using rule 17 (expresion -> expresion MAYORIGUAL expresion .) ]
   ! DISTINTO        [ reduce using rule 17 (expresion -> expresion MAYORIGUAL expresion .) ]
-  ! COMILLA         [ reduce using rule 17 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! PARENT          [ reduce using rule 17 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! STRING          [ reduce using rule 17 (expresion -> expresion MAYORIGUAL expresion .) ]
 
 
-state 40
+state 42
 
     (18) expresion -> expresion IGUAL expresion .
     (6) expresion -> expresion . SUMA expresion
@@ -1570,7 +1735,8 @@ state 40
     (17) expresion -> expresion . MAYORIGUAL expresion
     (18) expresion -> expresion . IGUAL expresion
     (19) expresion -> expresion . DISTINTO expresion
-    (20) expresion -> expresion . COMILLA expresion
+    (20) expresion -> expresion . PARENT expresion
+    (21) expresion -> expresion . STRING expresion
 
   ! shift/reduce conflict for SUMA resolved as shift
   ! shift/reduce conflict for RESTA resolved as shift
@@ -1584,23 +1750,25 @@ state 40
   ! shift/reduce conflict for MAYORIGUAL resolved as shift
   ! shift/reduce conflict for IGUAL resolved as shift
   ! shift/reduce conflict for DISTINTO resolved as shift
-  ! shift/reduce conflict for COMILLA resolved as shift
+  ! shift/reduce conflict for PARENT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
     $end            reduce using rule 18 (expresion -> expresion IGUAL expresion .)
     LLADER          reduce using rule 18 (expresion -> expresion IGUAL expresion .)
     CORDER          reduce using rule 18 (expresion -> expresion IGUAL expresion .)
-    SUMA            shift and go to state 15
-    RESTA           shift and go to state 16
-    MULT            shift and go to state 17
-    DIV             shift and go to state 18
-    POTENCIA        shift and go to state 19
-    MODULO          shift and go to state 20
-    MENORQUE        shift and go to state 21
-    MAYORQUE        shift and go to state 22
-    MENORIGUAL      shift and go to state 23
-    MAYORIGUAL      shift and go to state 24
-    IGUAL           shift and go to state 25
-    DISTINTO        shift and go to state 26
-    COMILLA         shift and go to state 27
+    SUMA            shift and go to state 16
+    RESTA           shift and go to state 17
+    MULT            shift and go to state 18
+    DIV             shift and go to state 19
+    POTENCIA        shift and go to state 20
+    MODULO          shift and go to state 21
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 24
+    MAYORIGUAL      shift and go to state 25
+    IGUAL           shift and go to state 26
+    DISTINTO        shift and go to state 27
+    PARENT          shift and go to state 28
+    STRING          shift and go to state 29
 
   ! SUMA            [ reduce using rule 18 (expresion -> expresion IGUAL expresion .) ]
   ! RESTA           [ reduce using rule 18 (expresion -> expresion IGUAL expresion .) ]
@@ -1614,10 +1782,11 @@ state 40
   ! MAYORIGUAL      [ reduce using rule 18 (expresion -> expresion IGUAL expresion .) ]
   ! IGUAL           [ reduce using rule 18 (expresion -> expresion IGUAL expresion .) ]
   ! DISTINTO        [ reduce using rule 18 (expresion -> expresion IGUAL expresion .) ]
-  ! COMILLA         [ reduce using rule 18 (expresion -> expresion IGUAL expresion .) ]
+  ! PARENT          [ reduce using rule 18 (expresion -> expresion IGUAL expresion .) ]
+  ! STRING          [ reduce using rule 18 (expresion -> expresion IGUAL expresion .) ]
 
 
-state 41
+state 43
 
     (19) expresion -> expresion DISTINTO expresion .
     (6) expresion -> expresion . SUMA expresion
@@ -1632,7 +1801,8 @@ state 41
     (17) expresion -> expresion . MAYORIGUAL expresion
     (18) expresion -> expresion . IGUAL expresion
     (19) expresion -> expresion . DISTINTO expresion
-    (20) expresion -> expresion . COMILLA expresion
+    (20) expresion -> expresion . PARENT expresion
+    (21) expresion -> expresion . STRING expresion
 
   ! shift/reduce conflict for SUMA resolved as shift
   ! shift/reduce conflict for RESTA resolved as shift
@@ -1646,23 +1816,25 @@ state 41
   ! shift/reduce conflict for MAYORIGUAL resolved as shift
   ! shift/reduce conflict for IGUAL resolved as shift
   ! shift/reduce conflict for DISTINTO resolved as shift
-  ! shift/reduce conflict for COMILLA resolved as shift
+  ! shift/reduce conflict for PARENT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
     $end            reduce using rule 19 (expresion -> expresion DISTINTO expresion .)
     LLADER          reduce using rule 19 (expresion -> expresion DISTINTO expresion .)
     CORDER          reduce using rule 19 (expresion -> expresion DISTINTO expresion .)
-    SUMA            shift and go to state 15
-    RESTA           shift and go to state 16
-    MULT            shift and go to state 17
-    DIV             shift and go to state 18
-    POTENCIA        shift and go to state 19
-    MODULO          shift and go to state 20
-    MENORQUE        shift and go to state 21
-    MAYORQUE        shift and go to state 22
-    MENORIGUAL      shift and go to state 23
-    MAYORIGUAL      shift and go to state 24
-    IGUAL           shift and go to state 25
-    DISTINTO        shift and go to state 26
-    COMILLA         shift and go to state 27
+    SUMA            shift and go to state 16
+    RESTA           shift and go to state 17
+    MULT            shift and go to state 18
+    DIV             shift and go to state 19
+    POTENCIA        shift and go to state 20
+    MODULO          shift and go to state 21
+    MENORQUE        shift and go to state 22
+    MAYORQUE        shift and go to state 23
+    MENORIGUAL      shift and go to state 24
+    MAYORIGUAL      shift and go to state 25
+    IGUAL           shift and go to state 26
+    DISTINTO        shift and go to state 27
+    PARENT          shift and go to state 28
+    STRING          shift and go to state 29
 
   ! SUMA            [ reduce using rule 19 (expresion -> expresion DISTINTO expresion .) ]
   ! RESTA           [ reduce using rule 19 (expresion -> expresion DISTINTO expresion .) ]
@@ -1676,12 +1848,13 @@ state 41
   ! MAYORIGUAL      [ reduce using rule 19 (expresion -> expresion DISTINTO expresion .) ]
   ! IGUAL           [ reduce using rule 19 (expresion -> expresion DISTINTO expresion .) ]
   ! DISTINTO        [ reduce using rule 19 (expresion -> expresion DISTINTO expresion .) ]
-  ! COMILLA         [ reduce using rule 19 (expresion -> expresion DISTINTO expresion .) ]
+  ! PARENT          [ reduce using rule 19 (expresion -> expresion DISTINTO expresion .) ]
+  ! STRING          [ reduce using rule 19 (expresion -> expresion DISTINTO expresion .) ]
 
 
-state 42
+state 44
 
-    (20) expresion -> expresion COMILLA expresion .
+    (20) expresion -> expresion PARENT expresion .
     (6) expresion -> expresion . SUMA expresion
     (7) expresion -> expresion . RESTA expresion
     (8) expresion -> expresion . MULT expresion
@@ -1694,41 +1867,96 @@ state 42
     (17) expresion -> expresion . MAYORIGUAL expresion
     (18) expresion -> expresion . IGUAL expresion
     (19) expresion -> expresion . DISTINTO expresion
-    (20) expresion -> expresion . COMILLA expresion
+    (20) expresion -> expresion . PARENT expresion
+    (21) expresion -> expresion . STRING expresion
 
-    SUMA            reduce using rule 20 (expresion -> expresion COMILLA expresion .)
-    RESTA           reduce using rule 20 (expresion -> expresion COMILLA expresion .)
-    MULT            reduce using rule 20 (expresion -> expresion COMILLA expresion .)
-    DIV             reduce using rule 20 (expresion -> expresion COMILLA expresion .)
-    POTENCIA        reduce using rule 20 (expresion -> expresion COMILLA expresion .)
-    MODULO          reduce using rule 20 (expresion -> expresion COMILLA expresion .)
-    MENORQUE        reduce using rule 20 (expresion -> expresion COMILLA expresion .)
-    MAYORQUE        reduce using rule 20 (expresion -> expresion COMILLA expresion .)
-    MENORIGUAL      reduce using rule 20 (expresion -> expresion COMILLA expresion .)
-    MAYORIGUAL      reduce using rule 20 (expresion -> expresion COMILLA expresion .)
-    IGUAL           reduce using rule 20 (expresion -> expresion COMILLA expresion .)
-    DISTINTO        reduce using rule 20 (expresion -> expresion COMILLA expresion .)
-    $end            reduce using rule 20 (expresion -> expresion COMILLA expresion .)
-    LLADER          reduce using rule 20 (expresion -> expresion COMILLA expresion .)
-    CORDER          reduce using rule 20 (expresion -> expresion COMILLA expresion .)
-    COMILLA         shift and go to state 27
+    POTENCIA        reduce using rule 20 (expresion -> expresion PARENT expresion .)
+    MODULO          reduce using rule 20 (expresion -> expresion PARENT expresion .)
+    MENORQUE        reduce using rule 20 (expresion -> expresion PARENT expresion .)
+    MAYORQUE        reduce using rule 20 (expresion -> expresion PARENT expresion .)
+    MENORIGUAL      reduce using rule 20 (expresion -> expresion PARENT expresion .)
+    MAYORIGUAL      reduce using rule 20 (expresion -> expresion PARENT expresion .)
+    IGUAL           reduce using rule 20 (expresion -> expresion PARENT expresion .)
+    DISTINTO        reduce using rule 20 (expresion -> expresion PARENT expresion .)
+    PARENT          reduce using rule 20 (expresion -> expresion PARENT expresion .)
+    STRING          reduce using rule 20 (expresion -> expresion PARENT expresion .)
+    $end            reduce using rule 20 (expresion -> expresion PARENT expresion .)
+    LLADER          reduce using rule 20 (expresion -> expresion PARENT expresion .)
+    CORDER          reduce using rule 20 (expresion -> expresion PARENT expresion .)
+    SUMA            shift and go to state 16
+    RESTA           shift and go to state 17
+    MULT            shift and go to state 18
+    DIV             shift and go to state 19
 
-  ! COMILLA         [ reduce using rule 20 (expresion -> expresion COMILLA expresion .) ]
-  ! SUMA            [ shift and go to state 15 ]
-  ! RESTA           [ shift and go to state 16 ]
-  ! MULT            [ shift and go to state 17 ]
-  ! DIV             [ shift and go to state 18 ]
-  ! POTENCIA        [ shift and go to state 19 ]
-  ! MODULO          [ shift and go to state 20 ]
-  ! MENORQUE        [ shift and go to state 21 ]
-  ! MAYORQUE        [ shift and go to state 22 ]
-  ! MENORIGUAL      [ shift and go to state 23 ]
-  ! MAYORIGUAL      [ shift and go to state 24 ]
-  ! IGUAL           [ shift and go to state 25 ]
-  ! DISTINTO        [ shift and go to state 26 ]
+  ! SUMA            [ reduce using rule 20 (expresion -> expresion PARENT expresion .) ]
+  ! RESTA           [ reduce using rule 20 (expresion -> expresion PARENT expresion .) ]
+  ! MULT            [ reduce using rule 20 (expresion -> expresion PARENT expresion .) ]
+  ! DIV             [ reduce using rule 20 (expresion -> expresion PARENT expresion .) ]
+  ! POTENCIA        [ shift and go to state 20 ]
+  ! MODULO          [ shift and go to state 21 ]
+  ! MENORQUE        [ shift and go to state 22 ]
+  ! MAYORQUE        [ shift and go to state 23 ]
+  ! MENORIGUAL      [ shift and go to state 24 ]
+  ! MAYORIGUAL      [ shift and go to state 25 ]
+  ! IGUAL           [ shift and go to state 26 ]
+  ! DISTINTO        [ shift and go to state 27 ]
+  ! PARENT          [ shift and go to state 28 ]
+  ! STRING          [ shift and go to state 29 ]
 
 
-state 43
+state 45
+
+    (21) expresion -> expresion STRING expresion .
+    (6) expresion -> expresion . SUMA expresion
+    (7) expresion -> expresion . RESTA expresion
+    (8) expresion -> expresion . MULT expresion
+    (9) expresion -> expresion . DIV expresion
+    (10) expresion -> expresion . POTENCIA expresion
+    (11) expresion -> expresion . MODULO expresion
+    (14) expresion -> expresion . MENORQUE expresion
+    (15) expresion -> expresion . MAYORQUE expresion
+    (16) expresion -> expresion . MENORIGUAL expresion
+    (17) expresion -> expresion . MAYORIGUAL expresion
+    (18) expresion -> expresion . IGUAL expresion
+    (19) expresion -> expresion . DISTINTO expresion
+    (20) expresion -> expresion . PARENT expresion
+    (21) expresion -> expresion . STRING expresion
+
+    POTENCIA        reduce using rule 21 (expresion -> expresion STRING expresion .)
+    MODULO          reduce using rule 21 (expresion -> expresion STRING expresion .)
+    MENORQUE        reduce using rule 21 (expresion -> expresion STRING expresion .)
+    MAYORQUE        reduce using rule 21 (expresion -> expresion STRING expresion .)
+    MENORIGUAL      reduce using rule 21 (expresion -> expresion STRING expresion .)
+    MAYORIGUAL      reduce using rule 21 (expresion -> expresion STRING expresion .)
+    IGUAL           reduce using rule 21 (expresion -> expresion STRING expresion .)
+    DISTINTO        reduce using rule 21 (expresion -> expresion STRING expresion .)
+    $end            reduce using rule 21 (expresion -> expresion STRING expresion .)
+    LLADER          reduce using rule 21 (expresion -> expresion STRING expresion .)
+    CORDER          reduce using rule 21 (expresion -> expresion STRING expresion .)
+    SUMA            shift and go to state 16
+    RESTA           shift and go to state 17
+    MULT            shift and go to state 18
+    DIV             shift and go to state 19
+    PARENT          shift and go to state 28
+    STRING          shift and go to state 29
+
+  ! SUMA            [ reduce using rule 21 (expresion -> expresion STRING expresion .) ]
+  ! RESTA           [ reduce using rule 21 (expresion -> expresion STRING expresion .) ]
+  ! MULT            [ reduce using rule 21 (expresion -> expresion STRING expresion .) ]
+  ! DIV             [ reduce using rule 21 (expresion -> expresion STRING expresion .) ]
+  ! PARENT          [ reduce using rule 21 (expresion -> expresion STRING expresion .) ]
+  ! STRING          [ reduce using rule 21 (expresion -> expresion STRING expresion .) ]
+  ! POTENCIA        [ shift and go to state 20 ]
+  ! MODULO          [ shift and go to state 21 ]
+  ! MENORQUE        [ shift and go to state 22 ]
+  ! MAYORQUE        [ shift and go to state 23 ]
+  ! MENORIGUAL      [ shift and go to state 24 ]
+  ! MAYORIGUAL      [ shift and go to state 25 ]
+  ! IGUAL           [ shift and go to state 26 ]
+  ! DISTINTO        [ shift and go to state 27 ]
+
+
+state 46
 
     (12) expresion -> LLAIZQ expresion LLADER .
 
@@ -1744,13 +1972,14 @@ state 43
     MAYORIGUAL      reduce using rule 12 (expresion -> LLAIZQ expresion LLADER .)
     IGUAL           reduce using rule 12 (expresion -> LLAIZQ expresion LLADER .)
     DISTINTO        reduce using rule 12 (expresion -> LLAIZQ expresion LLADER .)
-    COMILLA         reduce using rule 12 (expresion -> LLAIZQ expresion LLADER .)
+    PARENT          reduce using rule 12 (expresion -> LLAIZQ expresion LLADER .)
+    STRING          reduce using rule 12 (expresion -> LLAIZQ expresion LLADER .)
     $end            reduce using rule 12 (expresion -> LLAIZQ expresion LLADER .)
     LLADER          reduce using rule 12 (expresion -> LLAIZQ expresion LLADER .)
     CORDER          reduce using rule 12 (expresion -> LLAIZQ expresion LLADER .)
 
 
-state 44
+state 47
 
     (13) expresion -> CORIZQ expresion CORDER .
 
@@ -1766,7 +1995,8 @@ state 44
     MAYORIGUAL      reduce using rule 13 (expresion -> CORIZQ expresion CORDER .)
     IGUAL           reduce using rule 13 (expresion -> CORIZQ expresion CORDER .)
     DISTINTO        reduce using rule 13 (expresion -> CORIZQ expresion CORDER .)
-    COMILLA         reduce using rule 13 (expresion -> CORIZQ expresion CORDER .)
+    PARENT          reduce using rule 13 (expresion -> CORIZQ expresion CORDER .)
+    STRING          reduce using rule 13 (expresion -> CORIZQ expresion CORDER .)
     $end            reduce using rule 13 (expresion -> CORIZQ expresion CORDER .)
     LLADER          reduce using rule 13 (expresion -> CORIZQ expresion CORDER .)
     CORDER          reduce using rule 13 (expresion -> CORIZQ expresion CORDER .)
@@ -1774,32 +2004,6 @@ state 44
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for SUMA in state 34 resolved as shift
-WARNING: shift/reduce conflict for RESTA in state 34 resolved as shift
-WARNING: shift/reduce conflict for MULT in state 34 resolved as shift
-WARNING: shift/reduce conflict for DIV in state 34 resolved as shift
-WARNING: shift/reduce conflict for POTENCIA in state 34 resolved as shift
-WARNING: shift/reduce conflict for MODULO in state 34 resolved as shift
-WARNING: shift/reduce conflict for MENORQUE in state 34 resolved as shift
-WARNING: shift/reduce conflict for MAYORQUE in state 34 resolved as shift
-WARNING: shift/reduce conflict for MENORIGUAL in state 34 resolved as shift
-WARNING: shift/reduce conflict for MAYORIGUAL in state 34 resolved as shift
-WARNING: shift/reduce conflict for IGUAL in state 34 resolved as shift
-WARNING: shift/reduce conflict for DISTINTO in state 34 resolved as shift
-WARNING: shift/reduce conflict for COMILLA in state 34 resolved as shift
-WARNING: shift/reduce conflict for SUMA in state 35 resolved as shift
-WARNING: shift/reduce conflict for RESTA in state 35 resolved as shift
-WARNING: shift/reduce conflict for MULT in state 35 resolved as shift
-WARNING: shift/reduce conflict for DIV in state 35 resolved as shift
-WARNING: shift/reduce conflict for POTENCIA in state 35 resolved as shift
-WARNING: shift/reduce conflict for MODULO in state 35 resolved as shift
-WARNING: shift/reduce conflict for MENORQUE in state 35 resolved as shift
-WARNING: shift/reduce conflict for MAYORQUE in state 35 resolved as shift
-WARNING: shift/reduce conflict for MENORIGUAL in state 35 resolved as shift
-WARNING: shift/reduce conflict for MAYORIGUAL in state 35 resolved as shift
-WARNING: shift/reduce conflict for IGUAL in state 35 resolved as shift
-WARNING: shift/reduce conflict for DISTINTO in state 35 resolved as shift
-WARNING: shift/reduce conflict for COMILLA in state 35 resolved as shift
 WARNING: shift/reduce conflict for SUMA in state 36 resolved as shift
 WARNING: shift/reduce conflict for RESTA in state 36 resolved as shift
 WARNING: shift/reduce conflict for MULT in state 36 resolved as shift
@@ -1812,7 +2016,8 @@ WARNING: shift/reduce conflict for MENORIGUAL in state 36 resolved as shift
 WARNING: shift/reduce conflict for MAYORIGUAL in state 36 resolved as shift
 WARNING: shift/reduce conflict for IGUAL in state 36 resolved as shift
 WARNING: shift/reduce conflict for DISTINTO in state 36 resolved as shift
-WARNING: shift/reduce conflict for COMILLA in state 36 resolved as shift
+WARNING: shift/reduce conflict for PARENT in state 36 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 36 resolved as shift
 WARNING: shift/reduce conflict for SUMA in state 37 resolved as shift
 WARNING: shift/reduce conflict for RESTA in state 37 resolved as shift
 WARNING: shift/reduce conflict for MULT in state 37 resolved as shift
@@ -1825,7 +2030,8 @@ WARNING: shift/reduce conflict for MENORIGUAL in state 37 resolved as shift
 WARNING: shift/reduce conflict for MAYORIGUAL in state 37 resolved as shift
 WARNING: shift/reduce conflict for IGUAL in state 37 resolved as shift
 WARNING: shift/reduce conflict for DISTINTO in state 37 resolved as shift
-WARNING: shift/reduce conflict for COMILLA in state 37 resolved as shift
+WARNING: shift/reduce conflict for PARENT in state 37 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 37 resolved as shift
 WARNING: shift/reduce conflict for SUMA in state 38 resolved as shift
 WARNING: shift/reduce conflict for RESTA in state 38 resolved as shift
 WARNING: shift/reduce conflict for MULT in state 38 resolved as shift
@@ -1838,7 +2044,8 @@ WARNING: shift/reduce conflict for MENORIGUAL in state 38 resolved as shift
 WARNING: shift/reduce conflict for MAYORIGUAL in state 38 resolved as shift
 WARNING: shift/reduce conflict for IGUAL in state 38 resolved as shift
 WARNING: shift/reduce conflict for DISTINTO in state 38 resolved as shift
-WARNING: shift/reduce conflict for COMILLA in state 38 resolved as shift
+WARNING: shift/reduce conflict for PARENT in state 38 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 38 resolved as shift
 WARNING: shift/reduce conflict for SUMA in state 39 resolved as shift
 WARNING: shift/reduce conflict for RESTA in state 39 resolved as shift
 WARNING: shift/reduce conflict for MULT in state 39 resolved as shift
@@ -1851,7 +2058,8 @@ WARNING: shift/reduce conflict for MENORIGUAL in state 39 resolved as shift
 WARNING: shift/reduce conflict for MAYORIGUAL in state 39 resolved as shift
 WARNING: shift/reduce conflict for IGUAL in state 39 resolved as shift
 WARNING: shift/reduce conflict for DISTINTO in state 39 resolved as shift
-WARNING: shift/reduce conflict for COMILLA in state 39 resolved as shift
+WARNING: shift/reduce conflict for PARENT in state 39 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 39 resolved as shift
 WARNING: shift/reduce conflict for SUMA in state 40 resolved as shift
 WARNING: shift/reduce conflict for RESTA in state 40 resolved as shift
 WARNING: shift/reduce conflict for MULT in state 40 resolved as shift
@@ -1864,7 +2072,8 @@ WARNING: shift/reduce conflict for MENORIGUAL in state 40 resolved as shift
 WARNING: shift/reduce conflict for MAYORIGUAL in state 40 resolved as shift
 WARNING: shift/reduce conflict for IGUAL in state 40 resolved as shift
 WARNING: shift/reduce conflict for DISTINTO in state 40 resolved as shift
-WARNING: shift/reduce conflict for COMILLA in state 40 resolved as shift
+WARNING: shift/reduce conflict for PARENT in state 40 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 40 resolved as shift
 WARNING: shift/reduce conflict for SUMA in state 41 resolved as shift
 WARNING: shift/reduce conflict for RESTA in state 41 resolved as shift
 WARNING: shift/reduce conflict for MULT in state 41 resolved as shift
@@ -1877,4 +2086,33 @@ WARNING: shift/reduce conflict for MENORIGUAL in state 41 resolved as shift
 WARNING: shift/reduce conflict for MAYORIGUAL in state 41 resolved as shift
 WARNING: shift/reduce conflict for IGUAL in state 41 resolved as shift
 WARNING: shift/reduce conflict for DISTINTO in state 41 resolved as shift
-WARNING: shift/reduce conflict for COMILLA in state 41 resolved as shift
+WARNING: shift/reduce conflict for PARENT in state 41 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 41 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 42 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 42 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 42 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 42 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 42 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 42 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 42 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 42 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 42 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 42 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 42 resolved as shift
+WARNING: shift/reduce conflict for DISTINTO in state 42 resolved as shift
+WARNING: shift/reduce conflict for PARENT in state 42 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 42 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 43 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 43 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 43 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 43 resolved as shift
+WARNING: shift/reduce conflict for POTENCIA in state 43 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 43 resolved as shift
+WARNING: shift/reduce conflict for MENORQUE in state 43 resolved as shift
+WARNING: shift/reduce conflict for MAYORQUE in state 43 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 43 resolved as shift
+WARNING: shift/reduce conflict for MAYORIGUAL in state 43 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 43 resolved as shift
+WARNING: shift/reduce conflict for DISTINTO in state 43 resolved as shift
+WARNING: shift/reduce conflict for PARENT in state 43 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 43 resolved as shift
