@@ -2,14 +2,14 @@ print ( " Bienvenido " )
 t = 33
 y = 3.3
 r = t + y
-print ( " Respuesta " )
+print ( " Suma " )
 puts ( r )
 r = t - y
-print ( " Respuesta " )
+print ( " Resta " )
 puts ( r )
 r = t * y
-print ( " Respuesta " )
+print ( " Multiplicacion" )
 puts ( r )
 r = t / y
-print ( " Respuesta " )
+print ( " Division " )
 puts ( r )
