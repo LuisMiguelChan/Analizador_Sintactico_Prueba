@@ -20,11 +20,16 @@ precedence = (
     ('right', 'VARIABLE'),
     ('right', 'PRINT'),
     ('right', 'PUTS'),
+    ('right', 'MIENTRAS'),
 )
 nombres = {}
 
 def p_declaracion_coditionif(t):
     'declaracion : SI'
+    t[0] = t[1]
+
+def p_declaracion_coditionwhile(t):
+    'declaracion : MIENTRAS'
     t[0] = t[1]
 
 def p_declaracion_EQUALS(t):

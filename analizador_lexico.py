@@ -13,28 +13,22 @@ tokens = [
     'DIV',
     'POTENCIA',
     'MODULO',
-    'MINUSMINUS',
-    'PLUSPLUS',
-    'COMA', 'DECIMAL', 'COMENTARIO','ENTRE',
+    'DECIMAL',
     'SI', 'SINO', 'VARIABLE',
-    'MIENTRAS', 'PARA',
-    'AND', 'OR', 'NOT', 'MENORQUE', 'MENORIGUAL', 'MAYORQUE', 'MAYORIGUAL', 'IGUAL', 'DISTINTO',
+    'MIENTRAS',
+    'MENORQUE', 'MENORIGUAL', 'MAYORQUE', 'MAYORIGUAL', 'IGUAL', 'DISTINTO',
     'PARENT', 'CORIZQ', 'CORDER', 'LLAIZQ', 'LLADER', 'STRING','COMILLA','COMMA', 'END', 'EQUALS',
     'PRINT', 'PUTS'
 ]
 
 t_SUMA = r'\+'
 t_RESTA = r'\-'
-t_MINUSMINUS = r'\-\-'
 t_MULT = r'\*'
 t_DIV = r'\/'
 t_MODULO = r'\%'
 t_POTENCIA = r'(\*{2} | \^)'
 t_COMILLA = r'["]'
 t_COMMA = r'\,'
-t_AND = r'\&\&'
-t_OR = r'\|{2}'
-t_NOT = r'\!'
 t_MENORQUE = r'<'
 t_MAYORQUE = r'>'
 t_CORIZQ = r'\['
@@ -97,10 +91,6 @@ def t_ENTERO(t):
 
 # operacion logica
 
-def t_PLUSPLUS(t):
-    r'\+\+'
-    return t
-
 def t_MENORIGUAL(t):
     r'<='
     return t
@@ -132,17 +122,7 @@ def t_newline(t):
 def t_STRING(t):
     r'[a-zA-Z:]+'
     return t
-
-def t_COMENTARIO(t):
-    r'/\*(.|\n)*?\*/'
-    t.lexer.lineno += t.value.count('\n')
-    print("Comentario de multiple linea")
-
-def t_comments_ONELine(t):
-    r'\/\/(.)*\n'
-    t.lexer.lineno += 1
-    print("Comentario de una linea")
-
+    
 t_ignore = '\t'
 
 def t_espacio(t):
