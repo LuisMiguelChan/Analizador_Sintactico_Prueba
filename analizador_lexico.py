@@ -37,8 +37,6 @@ t_LLAIZQ = r'\{'
 t_LLADER = r'\}'
 t_EQUALS = r'\=\='
 
-# palabras reservadas de PHP
-
 def t_SINO(t):
     r'else'
     return t
@@ -89,8 +87,6 @@ def t_ENTERO(t):
     t.value = int(t.value)
     return t
 
-# operacion logica
-
 def t_MENORIGUAL(t):
     r'<='
     return t
@@ -135,8 +131,6 @@ def t_error(t):
     resultado_lexema.append(estado)
     t.lexer.skip(1)
 
-# Prueba de ingreso
-
 def prueba(data):
     global resultado_lexema
 
@@ -151,8 +145,6 @@ def prueba(data):
         resultado_lexema.append(estado)
 
     return resultado_lexema
-
-# abrir archivo
 
 analizador = lex.lex()
 

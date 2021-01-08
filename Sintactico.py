@@ -80,9 +80,7 @@ def p_expresion_grupo(t):
                 | CORIZQ expresion CORDER
     '''
     t[0] = t[2]
-
-# sintactico de expresiones logicas
-    
+ 
 def p_expresion_logicas(t):
     '''
     expresion   :  expresion MENORQUE expresion 
