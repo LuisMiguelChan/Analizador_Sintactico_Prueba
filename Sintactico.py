@@ -8,18 +8,13 @@ resultado_gramatica = []
 
 precedence = (
     ('right', 'SI', 'SINO',),
-    ('right', 'STRING'),
-    ('left', 'PARENT'),
-    ('right', 'COMMA'),
+    ('left', 'COMMA'),
+    ('left', 'COMILLA'),
     ('left', 'SUMA', 'RESTA'),
     ('left', 'MULT', 'DIV'),
     ('right', 'END'),
     ('right', 'ENTERO'),
     ('right', 'EQUALS'),
-    ('right', 'COMILLA'),
-    ('right', 'VARIABLE'),
-    ('right', 'PRINT'),
-    ('right', 'PUTS'),
     ('right', 'MIENTRAS'),
 )
 nombres = {}
@@ -76,8 +71,11 @@ def p_expresion_operaciones(t):
 
 def p_expresion_grupo(t):
     '''
-    expresion  : LLAIZQ expresion LLADER
-                | CORIZQ expresion CORDER
+    expresion  : LLAIZQ VARIABLE LLADER
+                | CORIZQ VARIABLE CORDER
+                | PRINT PARENTIZQ COMILLA STRING COMILLA PARENTDER
+                | PRINT PARENTIZQ COMILLA STRING COMILLA COMMA VARIABLE PARENTDER
+                | PUTS PARENTIZQ VARIABLE PARENTDER
     '''
     t[0] = t[2]
  
@@ -89,8 +87,6 @@ def p_expresion_logicas(t):
                 |   expresion MAYORIGUAL expresion 
                 |   expresion IGUAL expresion 
                 |   expresion DISTINTO expresion
-                |   expresion PARENT expresion
-                |   expresion STRING expresion
     '''
     if t[2] == "<":
         t[0] = t[1] < t[3]
@@ -108,19 +104,7 @@ def p_expresion_logicas(t):
 def p_expresion_numero(t):
     'expresion : ENTERO'
     t[0] = t[1]
-
-def p_expresion_print(t):
-    'expresion : PRINT'
-    t[0] = t[1]
-
-def p_expresion_puts(t):
-    'expresion : PUTS'
-    t[0] = t[1]
-
-def p_comilla(t):
-    'expresion : COMILLA'
-    t[0] = t[1]
-
+    
 def p_expresion_decimal(t):
     'expresion : DECIMAL'
     t[0] = t[1]
@@ -153,7 +137,7 @@ def prueba_sintactica(data):
             if gram:
                 resultado_gramatica.append(str(gram))
         else:
-            print("")
+            print()
     return resultado_gramatica
 
 try:

@@ -2,7 +2,7 @@ print ( " Bienvenido " )
 t = 33
 y = 3.3
 r = t + y
-print ( " Suma " )
+print ( " Suma ")
 puts ( r )
 r = t - y
 print ( " Resta " )
@@ -13,3 +13,11 @@ puts ( r )
 r = t / y
 print ( " Division " )
 puts ( r )
+if
+else
+end
+while
+end
+suma=2+2
+25 != 32
+22 < 24

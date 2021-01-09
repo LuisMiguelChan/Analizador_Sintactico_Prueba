@@ -17,8 +17,8 @@ tokens = [
     'SI', 'SINO', 'VARIABLE',
     'MIENTRAS',
     'MENORQUE', 'MENORIGUAL', 'MAYORQUE', 'MAYORIGUAL', 'IGUAL', 'DISTINTO',
-    'PARENT', 'CORIZQ', 'CORDER', 'LLAIZQ', 'LLADER', 'STRING','COMILLA','COMMA', 'END', 'EQUALS',
-    'PRINT', 'PUTS'
+    'PARENTIZQ', 'CORIZQ', 'CORDER', 'LLAIZQ', 'LLADER', 'STRING','COMILLA','COMMA', 'END', 'EQUALS',
+    'PRINT', 'PUTS', 'PARENTDER'
 ]
 
 t_SUMA = r'\+'
@@ -36,6 +36,8 @@ t_CORDER = r'\]'
 t_LLAIZQ = r'\{'
 t_LLADER = r'\}'
 t_EQUALS = r'\=\='
+t_PARENTIZQ = r'\('
+t_PARENTDER = r'\)'
 
 def t_SINO(t):
     r'else'
@@ -50,11 +52,7 @@ def t_PUTS(t):
     return t
 
 def t_VARIABLE(t):
-    r'[tyr]'
-    return t
-
-def t_PARENT(t):
-    r'[()]'
+    r'[tyr]|suma'
     return t
 
 def t_END(t):
