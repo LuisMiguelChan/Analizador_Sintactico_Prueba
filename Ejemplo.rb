@@ -1,18 +1,14 @@
-print ( " Bienvenido " )
+print("Bienvenido")
 t = 33
 y = 3.3
 r = t + y
-print ( " Suma ")
-puts ( r )
+print("Suma")
 r = t - y
-print ( " Resta " )
-puts ( r )
+print("Resta")
 r = t * y
-print ( " Multiplicacion" )
-puts ( r )
+print("Multiplicacion")
 r = t / y
-print ( " Division " )
-puts ( r )
+print("Division")
 if
 else
 end

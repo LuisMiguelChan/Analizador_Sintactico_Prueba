@@ -1,15 +1,13 @@
 import ply.yacc as yacc
 from analizador_lexico import tokens
 import sys
-import ply.lex as lex 
-import re
+import ply.lex as lex
 
 resultado_gramatica = []
 
 precedence = (
     ('right', 'SI', 'SINO',),
     ('left', 'COMMA'),
-    ('left', 'COMILLA'),
     ('left', 'SUMA', 'RESTA'),
     ('left', 'MULT', 'DIV'),
     ('right', 'END'),
@@ -25,10 +23,6 @@ def p_declaracion_coditionif(t):
 
 def p_declaracion_coditionwhile(t):
     'declaracion : MIENTRAS'
-    t[0] = t[1]
-
-def p_declaracion_EQUALS(t):
-    'declaracion : EQUALS'
     t[0] = t[1]
 
 def p_declaracion_coditionelse(t):
@@ -51,6 +45,7 @@ def p_expresion_operaciones(t):
                 |   expresion DIV expresion
                 |   expresion POTENCIA expresion
                 |   expresion MODULO expresion
+                |   expresion EQUALS expresion
     '''
     if t[2] == '+':
         t[0] = t[1] + t[3]
@@ -62,6 +57,8 @@ def p_expresion_operaciones(t):
         t[0] = t[1] + t[3]
     elif t[2] == '%':
         t[0] = t[1] % t[3]
+    elif t[2] == '==':
+        t[0] = t[1] % t[3]
     elif t[2] == '**':
         i = t[3]
         t[0] = t[1]
@@ -71,13 +68,12 @@ def p_expresion_operaciones(t):
 
 def p_expresion_grupo(t):
     '''
-    expresion  : LLAIZQ VARIABLE LLADER
-                | CORIZQ VARIABLE CORDER
-                | PRINT PARENTIZQ COMILLA STRING COMILLA PARENTDER
-                | PRINT PARENTIZQ COMILLA STRING COMILLA COMMA VARIABLE PARENTDER
+    expresion  : PRINT PARENTIZQ VARIABLE PARENTDER
                 | PUTS PARENTIZQ VARIABLE PARENTDER
+                | PRINT PARENTIZQ STRING PARENTDER
+                | PRINT PARENTIZQ STRING COMMA VARIABLE PARENTDER
     '''
-    t[0] = t[2]
+    t[0] = t[3]
  
 def p_expresion_logicas(t):
     '''

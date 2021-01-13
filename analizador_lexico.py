@@ -17,7 +17,7 @@ tokens = [
     'SI', 'SINO', 'VARIABLE',
     'MIENTRAS',
     'MENORQUE', 'MENORIGUAL', 'MAYORQUE', 'MAYORIGUAL', 'IGUAL', 'DISTINTO',
-    'PARENTIZQ', 'CORIZQ', 'CORDER', 'LLAIZQ', 'LLADER', 'STRING','COMILLA','COMMA', 'END', 'EQUALS',
+    'PARENTIZQ', 'CORIZQ', 'CORDER', 'LLAIZQ', 'LLADER', 'STRING','COMMA', 'END', 'EQUALS',
     'PRINT', 'PUTS', 'PARENTDER'
 ]
 
@@ -27,7 +27,6 @@ t_MULT = r'\*'
 t_DIV = r'\/'
 t_MODULO = r'\%'
 t_POTENCIA = r'(\*{2} | \^)'
-t_COMILLA = r'["]'
 t_COMMA = r'\,'
 t_MENORQUE = r'<'
 t_MAYORQUE = r'>'
@@ -52,7 +51,7 @@ def t_PUTS(t):
     return t
 
 def t_VARIABLE(t):
-    r'[tyr]|suma'
+    r'[A-Za-z_][A-Za-z0-9_]*'
     return t
 
 def t_END(t):
@@ -114,7 +113,7 @@ def t_newline(t):
     t.lexer.lineno += len(t.value)
 
 def t_STRING(t):
-    r'[a-zA-Z:]+'
+    r'\"([^\\\n]|(\\.))*?\"'
     return t
     
 t_ignore = '\t'
