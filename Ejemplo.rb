@@ -10,7 +10,7 @@ r = t * y
 print("Multiplicacion")
 r = t / y
 print("Division")
-if()
+if
 else
 end
 while
