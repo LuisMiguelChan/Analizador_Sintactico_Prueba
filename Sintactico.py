@@ -46,6 +46,12 @@ def p_expresion_operaciones(t):
                 |   expresion POTENCIA expresion
                 |   expresion MODULO expresion
                 |   expresion EQUALS expresion
+                |   PARENTIZQ expresion SUMA expresion PARENTDER MULT expresion
+                |   PARENTIZQ expresion SUMA expresion PARENTDER expresion
+                |   PARENTIZQ expresion SUMA expresion PARENTDER DIV expresion
+                |   PARENTIZQ expresion RESTA expresion PARENTDER MULT expresion
+                |   PARENTIZQ expresion RESTA expresion PARENTDER expresion
+                |   PARENTIZQ expresion RESTA expresion PARENTDER DIV expresion
     '''
     if t[2] == '+':
         t[0] = t[1] + t[3]
@@ -74,7 +80,7 @@ def p_expresion_grupo(t):
                 | PRINT PARENTIZQ STRING COMMA VARIABLE PARENTDER
     '''
     t[0] = t[3]
- 
+
 def p_expresion_logicas(t):
     '''
     expresion   :  expresion MENORQUE expresion 
@@ -131,7 +137,7 @@ def prueba_sintactica(data):
         if item:
             gram = parser.parse(item)
             if gram:
-                resultado_gramatica.append(str(gram))
+                resultado_gramatica
         else:
             print()
     return resultado_gramatica
