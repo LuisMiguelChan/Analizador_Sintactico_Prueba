@@ -9,7 +9,7 @@ resultado_gramatica = []
 #Definicion de procedencias y formas de derivación
 #Lectura hacia la izquierda o derecha.
 precedence = (
-    ('left', 'SI', 'SINO',),
+    ('left', 'SINO',),
     ('left', 'COMMA'),
     ('left', 'SUMA', 'RESTA'),
     ('left', 'MULT', 'DIV'),
@@ -21,10 +21,6 @@ precedence = (
 
 #Se definen todas la reglas gramaticales
 #Definición de declaraciones
-def p_declaracion_coditionif(t):
-    'declaracion : SI'
-    t[0] = t[1]
-
 def p_declaracion_coditionwhile(t):
     'declaracion : MIENTRAS'
     t[0] = t[1]
@@ -57,6 +53,20 @@ def p_expresion_operaciones(t):
                 |   PARENTIZQ expresion RESTA expresion PARENTDER MULT expresion
                 |   PARENTIZQ expresion RESTA expresion PARENTDER expresion
                 |   PARENTIZQ expresion RESTA expresion PARENTDER DIV expresion
+                |   PARENTIZQ expresion MULT expresion PARENTDER MULT expresion
+                |   PARENTIZQ expresion MULT expresion PARENTDER expresion
+                |   PARENTIZQ expresion MULT expresion PARENTDER DIV expresion
+                |   PARENTIZQ expresion DIV expresion PARENTDER MULT expresion
+                |   PARENTIZQ expresion DIV expresion PARENTDER expresion
+                |   PARENTIZQ expresion DIV expresion PARENTDER DIV expresion
+                |   expresion MULT PARENTIZQ expresion SUMA VARIABLE PARENTDER
+                |   expresion MULT PARENTIZQ expresion RESTA VARIABLE PARENTDER
+                |   expresion MULT PARENTIZQ expresion MULT VARIABLE PARENTDER
+                |   expresion MULT PARENTIZQ expresion DIV VARIABLE PARENTDER
+                |   expresion DIV PARENTIZQ expresion SUMA VARIABLE PARENTDER
+                |   expresion DIV PARENTIZQ expresion RESTA VARIABLE PARENTDER
+                |   expresion DIV PARENTIZQ expresion MULT VARIABLE PARENTDER
+                |   expresion DIV PARENTIZQ expresion DIV VARIABLE PARENTDER
     '''
     if t[2] == '+':
         t[0] = t[1] + t[3]
@@ -84,15 +94,15 @@ def p_expresion_grupo(t):
                 | PUTS PARENTIZQ VARIABLE PARENTDER
                 | PRINT PARENTIZQ STRING PARENTDER
                 | PRINT PARENTIZQ STRING COMMA VARIABLE PARENTDER
+                | SI PARENTIZQ VARIABLE MENORQUE DECIMAL PARENTDER
     '''
     t[0] = t[3]
 
 #Uso de expresiones logicas, definición de posibles usos
 def p_expresion_logicas(t):
     '''
-    expresion   :  expresion MENORQUE expresion 
-                |  expresion MAYORQUE expresion 
-                |  expresion MENORIGUAL expresion 
+    expresion   :   expresion MAYORQUE expresion
+                |   expresion MENORIGUAL expresion 
                 |   expresion MAYORIGUAL expresion 
                 |   expresion IGUAL expresion 
                 |   expresion DISTINTO expresion
